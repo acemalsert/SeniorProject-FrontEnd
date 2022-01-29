@@ -1,0 +1,11 @@
+.slider{
+    height: 75vh;
+}
+.image{
+    width: 100%;
+    position: absolute;
+}
+.slider-img{
+    object-fit: contain;
+    width: 100%;
+}

@@ -18,9 +18,23 @@
 .nav-list{
     display: flex;
     justify-content: space-around;
-    padding: 2em;
+    padding: 2.2em;
     list-style: none;
 }
 .nav-list li{
     margin-right: 2em;
+}
+.nav-list li a{
+    text-decoration: none;
+    color: white;
+    border-style: none;
+    border-width: 2em;
+    transition: 0.4s;
+    transition-timing-function: ease-in-out;
+    border-radius: 0.5em;
+    padding: 1em;
+}
+.nav-list li a:hover{
+    background-color: white;
+    color: black;
 }
