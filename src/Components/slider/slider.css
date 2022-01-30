@@ -8,6 +8,8 @@
     position: absolute;
     opacity: 0;
     z-index: 0;
+    transition: 0.5s;
+    transition-timing-function: ease-in-out;
 }
 .slider-img[data-active]{
     opacity: 1;
@@ -26,7 +28,7 @@
     justify-content: space-between;
 }
 .slider-button{
-    color:black;
+    color:white;
     border:none;
     background-color: transparent;
     font-size: xx-large;
@@ -39,5 +41,31 @@
 .slider-button:hover{
     background-color: white;
     color:black;
+
+}
+.slide-heading{
+    position: absolute;
+    color: white;
+    left: 20%;
+    top:20%;
+    background-color: rgba(0,0,0,0.5);
+    padding: 2em;
+    border-radius: 0.5em;
+    opacity: 0;
+    transition: 1s;
+    transition-timing-function: ease-in-out;
+    transform: translateX(400%);
+}
+.slide-heading[data-active]{
+    opacity: 1;
+    transform: translateX(0%);
+}
+.slide-heading h2{
+    font-size: 5em;
+}
+.slide-heading p{
+    font-size: 1.5em;
+}
+@keyframes textSlide{
 
 }
