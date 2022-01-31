@@ -14,7 +14,6 @@
 .footer-links{
     list-style: none;
     padding: 2em;
-    align-items: center;
     width: 100%;
 }
 .footer-links ul{
@@ -35,4 +34,30 @@
 }
 .footer-links ul li a:hover{
     color: rgb(121, 152, 238);
+}
+@media only screen and (max-width:900px) {
+    .footer{
+        height: 85vh;
+    }
+    .footer-links ul{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        position: absolute;
+        right:10%;
+        left: 10%;
+    }
+    .footer-links ul li{
+        margin-bottom: 5em;
+    }
+    .footer-links ul li a{
+        color: white;
+        font-size: large;
+    }
+    .footer p{
+        position: absolute;
+        top: 50%;
+        left: 5%;;
+        padding-top: 3em;
+    }
 }
