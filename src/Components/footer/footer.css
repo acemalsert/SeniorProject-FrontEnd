@@ -1,19 +1,12 @@
 .footer{
-    position: fixed;
-    height: 15vh;
-    bottom: 0%;
+    position: absolute;
+    height: 10vh;
     background-color: black;
     width: 100%;
     color: white;
 }
-.footer p{
-    text-align: center;
-    font-size: small;
-    padding-top: 3em;
-}
 .footer-links{
     list-style: none;
-    padding: 2em;
     width: 100%;
 }
 .footer-links ul{
@@ -22,9 +15,10 @@
     left: 45%;
     display: flex;
     list-style: none;
+    margin-top: 1rem;
 }
 .footer-links ul li{
-    margin-right: 1em;
+    margin-right: 1rem;
 }
 .footer-links ul li a{
     text-decoration: none;
@@ -35,29 +29,40 @@
 .footer-links ul li a:hover{
     color: rgb(121, 152, 238);
 }
+.footer-cpy{
+    font-size: small;
+    width: 100%;
+    right: 40%;
+    left: 43%;
+    position: absolute;
+}
+.footer-cpy p{
+    margin-top: 4rem;
+}
 @media only screen and (max-width:900px) {
     .footer{
-        height: 85vh;
+        height: 80vh;
     }
     .footer-links ul{
         display: flex;
         flex-direction: column;
         justify-content: space-around;
         position: absolute;
-        right:10%;
-        left: 10%;
+        right:40%;
+        left: 40%;
     }
     .footer-links ul li{
-        margin-bottom: 5em;
+        margin-bottom: 5rem;
     }
     .footer-links ul li a{
         color: white;
         font-size: large;
     }
-    .footer p{
+    .footer-cpy{
         position: absolute;
-        top: 50%;
-        left: 5%;;
-        padding-top: 3em;
+        top: 40%;
+        right: 75%;
+        left: 25%;
+        margin-top: 3rem;
     }
 }

@@ -10,7 +10,9 @@ function Footer() {
                 <li><a href="https://www.linkedin.com"><i className="fab fa-linkedin"></i></a></li>
             </ul>
           </div>
+          <div className='footer-cpy'>
             <p><i className="fas fa-copyright"></i> 2022, Predator Social Media Team</p>
+          </div>
       </div>
   );
 }
