@@ -36,12 +36,16 @@
     left: 43%;
     position: absolute;
 }
-.footer-cpy p{
-    margin-top: 4rem;
+.footer-cpy{
+    position: absolute;
+    top: 10%;
+    right: 40%;
+    left: 43%;
+    margin-top: 3rem;
 }
 @media only screen and (max-width:900px) {
     .footer{
-        height: 80vh;
+        height: 100vh;
     }
     .footer-links ul{
         display: flex;

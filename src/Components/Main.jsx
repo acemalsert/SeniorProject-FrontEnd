@@ -5,13 +5,15 @@ import News from './News/News';
 import InduvidualNews from './InduvidualNews/InduvidualNews';
 import Footer from './footer/Footer';
 import Slider from './slider/Slider';
+import Who from './Who/Who';
 function Main() {
   return(
     <div>
         <Header/>
-            <Switch> 
+        <Switch> 
                 <Route exact path ="/">
                     <Slider/>
+                    <Who/>
                 </Route>
                 <Route exact path = "/News"> 
                     <News/>
