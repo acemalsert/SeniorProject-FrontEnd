@@ -22,7 +22,7 @@ function Main() {
                     <InduvidualNews/>
                 </Route>
                 <Redirect to="/"/>
-            </Switch>
+        </Switch>
         <Footer/>
     </div>
     );

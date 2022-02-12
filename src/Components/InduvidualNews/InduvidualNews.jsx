@@ -4,8 +4,7 @@ import "./induvidualNews.css";
 function InduvidualNews() {
 
   const [singlecomment,setsinglecomment] = useState("")
-  
-  const commentsArray = [{id:0, commentTime:"5 min ago", commentAuthor:"Gay Onad",commentText:"I am gay please fuck my ass" , imgSource: "https://www.casacenina.com/catalog/images/img_021/packshot/2922/treasure_13056.jpg"},{id:1, commentTime:"10 min ago", commentAuthor:"Transexual Sina",commentText:"I will!!",imgSource : "https://www.casacenina.com/catalog/images/img_021/packshot/2922/treasure_13056.jpg"}]
+
   
   console.log(commentsArray);
   const handleSubmit = () => {
