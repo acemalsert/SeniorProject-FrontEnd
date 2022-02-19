@@ -1,0 +1,24 @@
+.forum-entry{
+    padding: 5rem;
+    background-color: rgb(255, 255, 255);
+}
+.entry-content img{
+    width: 100%;
+    object-fit: contain;
+}
+.comment{
+    padding: 1rem;
+    margin-top: 0.2rem;
+}
+.button-forum{
+    border: none;
+    color:white;
+    padding: 0.6%;
+    background-color: rgb(42, 42, 160);
+    border-radius: 0.3rem;
+    transition: 0.4s;
+    transition-timing-function: ease-in-out;
+}
+.button-forum:hover{
+    background-color: rgb(63, 63, 65);
+}

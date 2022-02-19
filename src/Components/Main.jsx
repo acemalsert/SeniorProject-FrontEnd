@@ -6,22 +6,27 @@ import InduvidualNews from './InduvidualNews/InduvidualNews';
 import Footer from './footer/Footer';
 import Slider from './slider/Slider';
 import Who from './Who/Who';
+import Forum from './Forum/Forum';
+import ForumEntry from './ForumEntry/ForumEntry';
 function Main() {
   return(
     <div>
         <Header/>
         <Switch> 
-                <Route exact path ="/">
-                    <Slider/>
-                    <Who/>
-                </Route>
-                <Route exact path = "/News"> 
-                    <News/>
-                </Route>
-                <Route exact path="/InduvidualNews">
-                    <InduvidualNews/>
-                </Route>
-                <Redirect to="/"/>
+            <Route exact path ="/">
+                <Slider/>
+                <Who/>
+            </Route>
+            <Route exact path = "/news"> 
+                <News/>
+            </Route>
+            <Route exact path = "/forum">
+                <Forum/>
+            </Route>
+            <Route path = "/forum/:forumId">
+                <ForumEntry/>
+            </Route>
+            <Redirect to="/"/>
         </Switch>
         <Footer/>
     </div>

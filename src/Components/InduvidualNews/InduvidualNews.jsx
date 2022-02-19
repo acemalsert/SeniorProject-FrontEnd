@@ -5,6 +5,7 @@ function InduvidualNews() {
 
   const [singlecomment,setsinglecomment] = useState("")
 
+  const commentsArray = [];
   
   console.log(commentsArray);
   const handleSubmit = () => {

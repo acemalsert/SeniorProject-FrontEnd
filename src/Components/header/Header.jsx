@@ -19,7 +19,7 @@ function Header() {
         </div>
         <div className='nav'>
             <ul className='nav-list'>
-                <li><a href="/News"><i className="far fa-newspaper"></i>  Haberler</a></li>
+                <li><a href="/news"><i className="far fa-newspaper"></i>  Haberler</a></li>
                 <li><a href="/forum"><i className="fas fa-align-justify"></i> Forum</a></li>
                 <li><a href="/register">Kayıt Ol</a></li>
                 <li><a href="/login"><i className="fas fa-sign-in-alt"></i> Giriş yap</a></li>

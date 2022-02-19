@@ -1,0 +1,28 @@
+.forum-card{
+    margin: 2rem;
+    background-color: rgb(247, 247, 247);
+    border: 1px solid rgb(27, 27, 27);
+}
+.forumCard-heading{
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.forumCard-heading small{
+    margin-left: 0.2rem;
+}
+.forumCard-heading a{
+    color: black;
+}
+.forumCard-content{
+    padding: 1rem;
+}
+.forumCard-content img{
+    width: 100%;
+    object-fit: contain;
+}
+.forumCard-footer{
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
