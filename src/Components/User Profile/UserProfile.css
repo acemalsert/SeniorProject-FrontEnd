@@ -1,0 +1,33 @@
+.column1 {
+    background-color: #dee2e6;
+    position: relative;
+    margin-right: 10px;
+    height: 600px;
+    width: 300px;
+  }
+  .column2 {
+    position:relative;
+    background-color: #dee2e6;
+    height: 600px;
+    width: 500px;
+    
+  }
+.button-card {
+  border: thin;
+  border-color: white;
+  border-radius: 5%;
+  margin-top: 5%;
+  background-color: white
+}
+.card-header  {
+  max-width: 100%;
+  max-height: 100%;
+ 
+}
+.accountInfoCard {
+margin-top:300px;
+height: auto;
+width: auto;  
+  
+}
+
