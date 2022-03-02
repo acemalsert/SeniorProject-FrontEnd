@@ -33,6 +33,7 @@ function ForumEntry() {
     <div className='container'>
       <div className='row'>
         <div className='col-12 col-md-12'>
+          <button className='back'><a href="/forum"><i className="fa-solid fa-arrow-left-long"></i></a></button>
           <div className='forum-entry'>
             <div className='entry-heading'>
               <h3>{entry.title}</h3>

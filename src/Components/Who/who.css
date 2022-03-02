@@ -1,5 +1,11 @@
 .who{
+    display: none;
     background-color: rgb(15, 15, 15);
     color: white;
     padding: 4rem;
+}
+@media only screen and (max-width:900px) {
+    .who{
+        display: block;
+    }
 }
