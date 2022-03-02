@@ -1,6 +1,8 @@
 .forum-entry{
-    padding: 5rem;
-    background-color: rgb(255, 255, 255);
+    margin: 2rem;
+    padding: 2rem;
+    border-radius: 1rem;
+    background-color: rgb(245, 245, 245);
 }
 .entry-content img{
     width: 100%;
@@ -21,4 +23,40 @@
 }
 .button-forum:hover{
     background-color: rgb(63, 63, 65);
+}
+.back{
+    margin-top: 1rem;
+    background-color: rgb(199, 199, 199);
+    border-radius: 1rem;
+    border: none;
+    transition: 0.4s;
+    transition-timing-function: ease-in;
+}
+.back a{
+    text-decoration: none;
+    padding: 3rem;
+    color: black;
+    transition: 0.4s;
+    transition-timing-function: ease-in;
+}
+.back i{
+    font-size: large;
+}
+.back a:hover{
+    color: white;
+}
+.back:hover{
+    background-color: black;
+}
+@media only screen and (max-width:900px) {
+    .forum-entry{
+        margin: 1rem;
+        padding: 0;
+    }
+    .back a{
+        padding: 1.5rem;
+    }
+    .button-forum{
+        padding: 0.5rem;
+    }
 }
