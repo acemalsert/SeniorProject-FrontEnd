@@ -8,6 +8,7 @@ import Slider from './slider/Slider';
 import Who from './Who/Who';
 import Forum from './Forum/Forum';
 import ForumEntry from './ForumEntry/ForumEntry';
+import UserProfile from './User Profile/UserProfile';
 function Main() {
   return(
     <div>
@@ -19,6 +20,9 @@ function Main() {
             </Route>
             <Route exact path = "/news"> 
                 <News/>
+            </Route>
+            <Route exact path = "/profile"> 
+                <UserProfile/>
             </Route>
             <Route exact path = "/forum">
                 <Forum/>
