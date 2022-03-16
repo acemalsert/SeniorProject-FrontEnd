@@ -4,6 +4,7 @@ const EmptyCommentList = ()=>{
     return(
       <div>
           <p>Buraya henüz yorum yapılmamıştır.</p>
+          <button className='button-forum'>Ilk yorumu Yap</button>
       </div>
     )
   }
@@ -19,7 +20,7 @@ function Comments({comments}){
             behavior:"smooth"
         })
     }
-    if(!comments){
+    if(comments.length === 0){
         return(
             <EmptyCommentList/>
         );
