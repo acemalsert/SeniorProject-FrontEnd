@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import forumData from '../../DummyData/ForumData';
 import './forum.css';
 import axios from 'axios';
 
@@ -8,7 +7,7 @@ import axios from 'axios';
     useEffect(()=>{
         const fetchComment = async(forumId)=>{
             try {
-                const res = await axios.get(`/comments/forum/${forumId}`)
+                const res = await axios.get(`/comments/forum/getAll/${forumId}`)
                 if(res.data.length <= 0){
                     setCommentsLength("Henüz yorum yok")
                     return
@@ -27,27 +26,56 @@ import axios from 'axios';
 
 function Forum() {
     const [forums,setForums] = useState([])
+    const [search,setSearch] = useState([])
     useEffect(()=>{
         const fetchForumEntries = async ()=>{
             try {
                 const res = await axios.get('/forum/getForum')
                 setForums(res.data);
+                setSearch(res.data);
             } catch (error) {
                 console.log(error)
             }
         }
         fetchForumEntries()
     },[])
+    const handleSearch = (value)=>{
+        if(!value){
+            setSearch(forums)
+            return
+        }
+        const searchedForums = forums.filter((forumEntry)=>{
+            return forumEntry.title.toLowerCase().includes(value)
+        })
+        setSearch(searchedForums) 
+    }
     return (
     <div className='container'>
         <div className='row'>
-            {forums.map((entry)=>{
+            <div className='col-12 col-md-12'>
+                <div className='search-bar'>
+                    <h6>Forum Arama:</h6><hr />
+                    <i className="fa-solid fa-magnifying-glass" ></i>
+                    <input type="text" className='forum-search-field' placeholder='' name='search-field' onChange={(event)=>handleSearch(event.target.value)}/>
+                </div>
+            </div>
+        </div>
+        <div className='row'>
+            <div className='col-12 col-md-12'>
+                <div className='search-bar'>
+                    <h6>En son Forumlar</h6><hr />
+                </div>
+            </div>
+        </div>
+        <div className='row'>
+            {search.map((entry)=>{
                 return(
                     <div className='col-12 col-md-4' key={entry._id}>
                         <div className='forum-card'>
                             <div className='forumCard-heading'>
                                 <small><i className="fa-solid fa-user"></i></small>
-                                <a href={`/forum/${entry.forumId}`}><h5>{entry.title}</h5></a>
+                                <small>{entry.userId}</small>
+                                <a href={`/forum/${entry._id}`}><h5>{entry.title}</h5></a>
                             </div>
                             <div className='forumCard-content'>
                                 <p>{entry.content}</p>

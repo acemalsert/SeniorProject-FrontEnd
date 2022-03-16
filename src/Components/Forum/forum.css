@@ -26,3 +26,26 @@
     padding-left: 1rem;
     padding-right: 1rem;
 }
+.forum-search-field{
+    border: none;
+    padding: 0.3rem;
+    outline: none;
+    transition: 0.4s;
+    transition-timing-function: ease-in-out;
+    border-radius: 0.2rem;
+    width: 90%;
+    background-color: rgb(221, 221, 221);
+}
+.forum-search-field:hover{
+    border: none;
+    padding: 0.3rem;
+    outline: none;
+}
+.search-bar{
+    color: black;
+    margin-top: 1rem;
+    padding: 1rem;
+}
+.fa-magnifying-glass{
+    margin-right: 0.5rem;
+}

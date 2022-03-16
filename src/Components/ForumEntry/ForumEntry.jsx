@@ -1,34 +1,32 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import {useParams} from 'react-router-dom'
-import forumData from '../../DummyData/ForumData';
+import Comments from './Comments';
 import './forumEntry.css';
-
-const EmptyCommentList = ()=>{
-  return(
-    <div>
-        <p>Buraya henüz yorum yapılmamıştır.</p>
-    </div>
-  )
-}
-const ShowCommentsForm = ()=>{
-  return(
-    <div className='postCommentForm'> 
-        <button type="button" className="button-forum">Yanıtları göster</button>
-    </div>
-  )
-}
 function ForumEntry() {
   const {forumId} = useParams();
   const [entry,setEntry] = useState({});
-
+  const [comments,setComments] = useState([]);
   useEffect(()=>{
-    const forum_enrty = forumData.find((element)=>{
-      return element.forumId === Number(forumId);
-    })
-    setEntry(forum_enrty);
-  },[])
-  console.log(entry);
-  
+    const fetchForumEntry =async ()=>{
+      try {
+        const res = await axios.get(`/forum/getForum/${forumId}`)
+        setEntry(res.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    const fetchForumComments = async ()=>{
+      try {
+        const res = await axios.get(`/comments/forum/getAll/${forumId}`)
+        setComments(res.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchForumEntry()
+    fetchForumComments()
+  },[]);
   return (
     <div className='container'>
       <div className='row'>
@@ -44,20 +42,7 @@ function ForumEntry() {
             </div>
             <div className='entry-comments'>
               <hr />
-              {entry.comments ? entry.comments.map((comment)=>{
-                  return(
-                    <div className='comment' key={comment.userId}>
-                      <div className='commentHeader'>
-                        <i className="fa-solid fa-user"></i>
-                      </div>
-                      <p>{comment.content}</p>
-                      <div className='CommentForm'> 
-                        <button className='button-forum'>Yanıt Ver</button>
-                        {comment.comments ? <ShowCommentsForm/>:console.log("No comment")}
-                      </div>
-                    </div>
-                  )
-              }): <EmptyCommentList/>}
+              <Comments comments={comments}/>
             </div>
           </div>
         </div>
