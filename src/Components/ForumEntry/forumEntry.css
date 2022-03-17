@@ -11,8 +11,8 @@
 .comment{
     padding: 1rem;
     margin-top: 0.2rem;
-    background-color: rgb(26, 26, 26);
-    border-radius: 2rem;
+    background-color: rgb(44, 44, 44);
+    border-radius: 1rem;
     color: white;
 }
 .commentHeader{
@@ -70,9 +70,20 @@
 .referenced{
     background-color: rgb(89, 103, 182);
     padding: 0.5rem;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     margin: 0.5rem;
     cursor: pointer;
+}
+.comment-modal{
+    background-color: white;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%,50%);
+    color: black;
+    padding: 2rem;
+    width: 40%;
+    border-radius: 2rem;
 }
 @media only screen and (max-width:900px) {
     .forum-entry{
@@ -84,5 +95,7 @@
     }
     .button-forum{
         padding: 0.5rem;
+    }
+    .comment-modal{
     }
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React from 'react'
 import './forumEntry.css';
 const EmptyCommentList = ()=>{
     return(
@@ -9,7 +9,7 @@ const EmptyCommentList = ()=>{
     )
   }
 
-function Comments({comments}){
+function Comments({comments,handleOpen}){
     const getParent = (id)=>{
         return comments.find((comment)=>comment._id === id)
     }
@@ -63,7 +63,7 @@ function Comments({comments}){
                                         <div className='row'>
                                             <div className='col-12 col-md-2'>
                                                 <div className='CommentForm'> 
-                                                    <button className='button-forum'>Yanıt Ver</button>
+                                                    <button className='button-forum' onClick={()=>handleOpen(comment._id)}>Yanıt Ver</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -92,7 +92,7 @@ function Comments({comments}){
                                         <div className='row'>
                                             <div className='col-12 col-md-2'>
                                                 <div className='CommentForm'> 
-                                                    <button className='button-forum'>Yanıt Ver</button>
+                                                    <button className='button-forum' onClick={()=>handleOpen(comment._id)}>Yanıt Ver</button>
                                                 </div>
                                             </div>
                                         </div>
