@@ -54,7 +54,7 @@ function Forum() {
         <div className='row'>
             <div className='col-12 col-md-12'>
                 <div className='search-bar'>
-                    <h6>Forum Arama:</h6><hr />
+                    <h6>Forum Arama:</h6><hr /> 
                     <i className="fa-solid fa-magnifying-glass" ></i>
                     <input type="text" className='forum-search-field' placeholder='' name='search-field' onChange={(event)=>handleSearch(event.target.value)}/>
                 </div>

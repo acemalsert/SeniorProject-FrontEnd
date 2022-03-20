@@ -1,0 +1,23 @@
+.register{
+    height: 80vh;
+    background-color: #f0f2f5;
+    position: relative;
+}
+.logo-register{
+    margin-top:2rem ;
+    padding: 2rem;
+}
+.logo-register h1{
+    font-size: 4rem;
+}
+.formWrapper{
+    margin-top: 2rem;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 1rem;
+}
+.wrapper{
+    position: absolute;
+    top: 30%;
+    width: 70%;
+}

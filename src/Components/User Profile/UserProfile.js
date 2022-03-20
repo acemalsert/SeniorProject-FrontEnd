@@ -22,7 +22,7 @@ function UserProfile() {
 
   return (
     <React.Fragment>
-      <Container>
+      <Container className="profile">
         <Row style={{ marginTop: "80px" }}>
           <Col className="column1" lg={3}>
             <div className="card-header">

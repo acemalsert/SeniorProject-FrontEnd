@@ -2,34 +2,30 @@ import React from "react";
 import { useEffect, useState } from "react";
 import "./news.css";
 import {Link} from 'react-router-dom';
+import axios from "axios";
 
 function News() {
+
+  const [news,setNews]  = useState([])
   const [searchTerm, setSearchTerm] = useState("");
 
-  /* Dummy News Data  */
-  const news = [
-    {
-      id: 1,
-      cardTitle: "Apex Legends",
-      img: "https://www.ubuy.com.tr/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvOTFYNzQ0eWoxeEwuX1NMMTUwMF8uanBn.jpg",
-      cardText:
-        " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt, lorem ac consectetur lobortis, tellusnisi sollicitudin dui, eget porttitor ipsum sem et tortor. Sedpellentesque aliquam justo, vel porttitor lorem fermentum a.Donec hendrerit nisi metus. In hac habitasse platea dictumst.",
-    },
-    {
-      id: 2,
-      cardTitle: "Valorant",
-      img: "https://teknosafari.net/wp-content/uploads/2020/11/riot-games-2021-valorant-sampiyonlar-turu-nu-duyurdu.png",
-      cardText:
-        " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt, lorem ac consectetur lobortis, tellusnisi sollicitudin dui, eget porttitor ipsum sem et tortor. Sedpellentesque aliquam justo, vel porttitor lorem fermentum a.Donec hendrerit nisi metus. In hac habitasse platea dictumst.",
-    },
-    {
-      id: 3,
-      cardTitle: "Battlefield 5",
-      img: "https://i.dr.com.tr/cache/500x400-0/originals/0001785320001-1.jpg",
-      cardText:
-        " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt, lorem ac consectetur lobortis, tellusnisi sollicitudin dui, eget porttitor ipsum sem et tortor. Sedpellentesque aliquam justo, vel porttitor lorem fermentum a.Donec hendrerit nisi metus. In hac habitasse platea dictumst.",
-    },
-  ];
+
+  const fetchNews  = async() => {
+    try{
+      const res = await axios.get('http://localhost:5000/api/news/getNews')
+      setNews(res.data)
+    }
+    catch{
+     // console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    fetchNews()
+}, []) 
+  
+
+ 
 
   return (
     <div className="container ">
@@ -63,7 +59,7 @@ function News() {
             if (searchTerm == "") {
               return filtered_news;
             } else if (
-              filtered_news.cardTitle
+              filtered_news.title
                 .toLowerCase()
                 .includes(searchTerm.toLowerCase())
             ) {
@@ -72,8 +68,8 @@ function News() {
           })
           .map((filtered_news) => (
 
-            <div className="row news-box">
-
+            <div className="row news-box grow mt-5 ">
+               
         <div className ="col-6">
         <img className="news-image"
                     src={filtered_news.img}
@@ -81,8 +77,29 @@ function News() {
                   />
         </div>
         <div className="col-6">
-        <div className = "news-title"><Link to="/InduvidualNews"> {filtered_news.cardTitle}</Link></div>
-        <p className = "news-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <div className="author-section mt-4">
+          <div className="row">
+            <div className="col-8">
+            <img className="author-image" src = "https://www.yenibirsey.net/wp-content/uploads/2017/12/wp-avatar.png"/>Atilla Khan</div>
+            
+            </div>
+           
+          
+        </div>
+        <div className = "news-title"><Link to={`/induvidualNews/${filtered_news.title}`} className = "title-link" > {filtered_news.title}</Link></div>
+        <p className = "news-content">{filtered_news.content}</p>
+        <div className="divider"> <hr/> </div>
+        <div className="row mb-2"> 
+        <div className="col-4">
+            2 görüntülenme
+        </div>
+        <div className="col-4">
+            2 yorum
+        </div>
+        <div className="col-4">
+        <i class="fa-regular fa-heart"></i>
+        </div>
+         </div>
         </div>
       </div>
 

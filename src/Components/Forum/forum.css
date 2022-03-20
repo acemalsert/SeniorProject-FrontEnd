@@ -46,6 +46,11 @@
     color: black;
     margin-top: 1rem;
     padding: 1rem;
+    display: flex;
+    align-items: center;
+}
+.search-bar h6{
+    padding: 0.2rem;
 }
 .fa-magnifying-glass{
     margin-right: 0.5rem;
