@@ -3,13 +3,14 @@ import { Container, Row, Col, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, TextField, Card, CardHeader, Slider } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-
+import { AuthContext } from "../../context/AuthContext";
 import profilePicture from "../../assets/profilepicture.png";
 import userList from "./userList.json";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef,useContext } from "react";
 
 function AccountTab() {
   const [value, setValue] = useState(30);
+  const {user} = useContext(AuthContext);
   function valuetext(value) {
     return `${value}°C`;
   }
@@ -44,7 +45,7 @@ function AccountTab() {
                     <Form.Control
                       name="name"
                       onChange={setInputs}
-                      value={inputs.name}
+                      value={user.username}
                       size="sm"
                       type="text"
                       placeholder="Name"

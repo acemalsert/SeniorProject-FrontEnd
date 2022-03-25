@@ -1,6 +1,9 @@
 .conversation{
   margin-top: 1rem;
   padding: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+  transition-timing-function: ease-in-out;
 }
 .conversationImg {
     width: 40px;
@@ -15,5 +18,5 @@
   }
 
   .conversation:hover {
-    background-color: rgb(245, 243, 243);
+    background-color: rgb(231, 231, 231);
   }

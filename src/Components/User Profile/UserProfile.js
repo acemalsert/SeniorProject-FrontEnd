@@ -4,13 +4,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, TextField, Card, CardHeader, Slider } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import profilePicture from "../../assets/profilepicture.png";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import AccountTab from "./AccountTab";
 import PasswordTab from "./PasswordTab";
+import { AuthContext } from "../../context/AuthContext";
 
 function UserProfile() {
   const [activeTab, setActiveTab] = useState("tab1");
-
+  const {user} = useContext(AuthContext);
   const handleTab1 = () => {
     // update the state to tab1
     setActiveTab("tab1");

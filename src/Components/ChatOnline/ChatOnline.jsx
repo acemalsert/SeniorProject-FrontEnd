@@ -8,17 +8,12 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   useEffect(() => {
-    const getFriends = async () => {
-      const res = await axios.get("/users/friends/" + currentId);
-      setFriends(res.data);
-    };
+    // const getFriends = async () => {
+    // };
 
-    getFriends();
+    // getFriends();
   }, [currentId]);
 
-  useEffect(() => {
-    setOnlineFriends(friends.filter((f) => onlineUsers.includes(f._id)));
-  }, [friends, onlineUsers]);
 
   const handleClick = async (user) => {
     try {
