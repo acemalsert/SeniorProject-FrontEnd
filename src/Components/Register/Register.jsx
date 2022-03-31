@@ -1,11 +1,33 @@
 import React, { useState } from "react";
 import "./register.css";
 import axios from "axios";
+import { isEmail } from "validator";
 const Register = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const validateEmail = (value) => {
+    if (!isEmail(value)) {
+      return alert("This is not a valid email.");
+    } else {
+      return true;
+    }
+  };
+  const validateUsername = (value) => {
+    if (value.length < 3 || value.length > 20) {
+      return alert("The username must be between 3 and 20 characters.");
+    } else {
+      return true;
+    }
+  };
+  const validatePassword = (value) => {
+    if (value.length < 6 || value.length > 40) {
+      return alert("The password must be between 6 and 40 characters.");
+    } else {
+      return true;
+    }
+  };
   const onsubmit = async () => {
     console.log(username, email, password);
     try {
@@ -52,7 +74,6 @@ const Register = () => {
                   <input
                     type="text"
                     name="username"
-                    id=""
                     className="form-control mt-2"
                     placeholder="Kullanıcı Adı"
                     onChange={(event) => setUsername(event.target.value)}
@@ -73,7 +94,15 @@ const Register = () => {
                   />
                   <button
                     className="btn btn-secondary mt-3"
-                    onClick={(e) => onsubmit()}
+                    onClick={(e) => {
+                      if (
+                        validateUsername(username) &&
+                        validatePassword(password) &&
+                        validateEmail(email) == true
+                      ) {
+                        onsubmit();
+                      }
+                    }}
                   >
                     Üye Ol
                   </button>
