@@ -14,7 +14,7 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { user, isFetching, dispatch } = useContext(AuthContext);
-
+  const API_URL = "http://localhost:8080/api/auth/";
   // const handleClick = (e) => {
   //   e.preventDefault();
   //   const loginCall = async (email, password) => {
@@ -30,6 +30,22 @@ export default function Login() {
   //   };
   //   loginCall(email.current.value, password.current.value);
   // };
+  // const login = async (username, password) => {
+  //   alert("BURADA");
+  //   return await axios
+  //     .post(API_URL + "signin", {
+  //       username,
+  //       password,
+  //     })
+  //     .then((response) => {
+
+  //       if (response.data.accessToken) {
+  //         localStorage.setItem("user", JSON.stringify(response.data));
+  //         alert(localStorage.getItem);
+  //       }
+  //       return response.data;
+  //     });
+  // };
 
   const onsubmit = async () => {
     console.log(username, password);
@@ -38,18 +54,25 @@ export default function Login() {
         username: username,
         password: password,
       });
-      console.log(json);
-      const res = await axios.post(
-        "http://localhost:8080/api/auth/signin",
-        {
-          username: username,
-          password: password,
-        },
-        {
-          "Content-Type": "application/json",
-        }
-      );
-      alert(res);
+      alert(json);
+      const res = await axios
+        .post(
+          "http://localhost:8080/api/auth/signin",
+          {
+            username: username,
+            password: password,
+          },
+          {
+            "Content-Type": "application/json",
+          }
+        )
+        .then((res) => {
+          if (res.data.accessToken) {
+            localStorage.setItem("user", JSON.stringify(res.data));
+            alert(localStorage.getItem);
+          }
+          return response.data;
+        });
     } catch (error) {
       console.log(error);
     }
@@ -71,7 +94,7 @@ export default function Login() {
               type="username"
               required
               className="loginInput"
-              onChange={(event) => setPassword(event.target.value)}
+              onChange={(event) => setUsername(event.target.value)}
             />
             <input
               placeholder="Password"
