@@ -1,5 +1,5 @@
 .header{
-    background-color: black;
+    background-color: rgb(32, 32, 32);
     color:white;
     width: 100%;
     position: sticky;
@@ -54,6 +54,11 @@
     margin: 0.3rem;
     transition: 0.4s;
     transition-timing-function: ease-in-out;
+}
+.prof{
+    background-color: gray;
+    padding: 1rem;
+    border-radius: 50%;
 }
 @media only screen and (max-width:900px){
 

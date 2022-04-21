@@ -7,7 +7,11 @@ const CheckUser = ()=>{
     return(
       <>
         <li><a href="/messenger"><i className="fa-solid fa-message"></i>  Mesajlar</a></li>
-        <li><a href="/profile"><i className="fa-solid fa-user"></i></a></li>
+        <li>
+          <a href="/profile" className='prof'>
+            <i className="fa-solid fa-user"></i>
+          </a>
+        </li>
       </>
     )
   }

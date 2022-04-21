@@ -12,6 +12,7 @@ import UserProfile from './User Profile/UserProfile';
 import Messenger from './Messenger/Messenger';
 import Register from './Register/Register';
 import Login from './Login/Login';
+import ForumForm from './Forum/ForumForm';
 import { AuthContext } from '../context/AuthContext';
 function Main() {
     const {user}  = useContext(AuthContext);
@@ -33,13 +34,16 @@ function Main() {
                 <News/>
             </Route>
             <Route exact path = "/profile"> 
-                <UserProfile/>
+                {user ? <UserProfile/> :<Redirect to="/"/> }
             </Route>
             <Route exact path = "/forum">
                 <Forum/>
             </Route>
             <Route path = "/forum/:forumId">
                 <ForumEntry/>
+            </Route>
+            <Route exact path = "/addForum">
+                {user ? <ForumForm/>:<Redirect to="/"/>}
             </Route>
             <Route path="/messenger">
                 {user ? <Messenger/>:<Redirect to="/"/>}

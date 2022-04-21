@@ -60,7 +60,7 @@ function Comments({comments,handleOpen}){
                                             </div>
                                         </div>
                                         <div className='row'>
-                                            <div className='col-12 col-md-4'>
+                                            <div className='col-12 col-md-3'>
                                                 <div className='commentHeader'>
                                                     <i className="fa-solid fa-user"></i>
                                                     <small>{comment.userId}</small>
@@ -75,7 +75,7 @@ function Comments({comments,handleOpen}){
                                             </div>
                                         </div>
                                         <div className='row'>
-                                            <div className='col-12 col-md-2'>
+                                            <div className='col-12 col-md-12'>
                                                 <div className='CommentForm'> 
                                                     {user 
                                                     ? 
@@ -92,7 +92,7 @@ function Comments({comments,handleOpen}){
                                 <React.Fragment key={comment._id}>
                                     <div className='comment' key={comment.userId} id={comment._id}>
                                         <div className='row'>
-                                            <div className='col-12 col-md-4'>
+                                            <div className='col-12 col-md-3'>
                                                 <div className='commentHeader'>
                                                     <i className="fa-solid fa-user"></i>
                                                     <small>{comment.userId}</small>
@@ -107,7 +107,7 @@ function Comments({comments,handleOpen}){
                                             </div>
                                         </div>
                                         <div className='row'>
-                                            <div className='col-12 col-md-2'>
+                                            <div className='col-12 col-md-12'>
                                                 <div className='CommentForm'> 
                                                     <button className='button-forum' onClick={()=>handleOpen(comment._id)}>Yanıt Ver</button>
                                                 </div>

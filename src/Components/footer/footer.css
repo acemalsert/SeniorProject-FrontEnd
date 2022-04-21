@@ -1,7 +1,7 @@
 .footer{
     position: absolute;
     height: 10vh;
-    background-color: black;
+    background-color: rgb(32, 32, 32);
     width: 100%;
     color: white;
 }

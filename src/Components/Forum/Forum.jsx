@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './forum.css';
 import axios from 'axios';
+import { AuthContext } from '../../context/AuthContext';
 
  function DisplayComments({forumId}) {
     const [commentsLength,setCommentsLength] = useState("")
@@ -27,6 +28,7 @@ import axios from 'axios';
 function Forum() {
     const [forums,setForums] = useState([])
     const [search,setSearch] = useState([])
+    const {user} = useContext(AuthContext)
     useEffect(()=>{
         const fetchForumEntries = async ()=>{
             try {
@@ -62,9 +64,15 @@ function Forum() {
         </div>
         <div className='row'>
             <div className='col-12 col-md-12'>
-                <div className='search-bar'>
-                    <h6>En son Forumlar</h6><hr />
+                <div className='searchWrapper'>
+                    <div>
+                        <h6>En son Forumlar</h6>
+                    </div>
+                    <div>
+                        <a href="/addForum" className='btn btn-secondary'>Forum Ekle</a>
+                    </div>
                 </div>
+                <hr />
             </div>
         </div>
         <div className='row'>

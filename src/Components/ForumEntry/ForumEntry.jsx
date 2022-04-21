@@ -55,7 +55,7 @@ function ForumEntry() {
     fetchForumEntry()
     fetchForumComments()
   },[]);
-
+ 
   return (
     <div className='container'>
       <div className='row'>
