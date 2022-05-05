@@ -82,7 +82,7 @@ function Forum() {
                         <div className='forum-card'>
                             <div className='forumCard-heading'>
                                 <small><i className="fa-solid fa-user"></i></small>
-                                <small>{entry.userId}</small>
+                                <small>{entry.username || entry.userId}</small>
                                 <a href={`/forum/${entry._id}`}><h5>{entry.title}</h5></a>
                             </div>
                             <div className='forumCard-content'>

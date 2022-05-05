@@ -6,7 +6,8 @@
 }
 
 .chatMenu {
-  flex: 3.5;
+  display: flex;
+  flex-direction: column;
 }
 
 .chatMenuInput {
@@ -82,6 +83,8 @@
 }
 .chatMenuWrapper{
   display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 .noConversationText {
   position: absolute;
@@ -90,7 +93,22 @@
   color: rgb(224, 220, 220);
   cursor: default;
 }
-
+.userWrapper{
+  padding: 1rem;
+  margin-left: 0.5rem;
+  margin-top: 0.2rem;
+  cursor: pointer;
+  transition: 0.2s;
+  transition-timing-function: ease-in-out;
+  display: flex;
+  align-items: center;
+}
+.userWrapper h6{
+  margin-top: 0.3rem;
+}
+.userWrapper:hover{
+  background-color: rgb(236, 236, 236);
+}
 @media screen and (max-width: 768px) {
   .chatMenu {
     flex: 1;

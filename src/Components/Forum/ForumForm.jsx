@@ -10,13 +10,18 @@ function ForumForm() {
     const handleSubmit = ()=>{
         const forumEntry = {
             userId:user._id,
+            username:user.username,
             title:title,
             content:content,
             img:imgUrl
         }
         const postForum = async ()=>{
             try {
-                const res = await axios.post(`/forum/addForum/${user._id}`,forumEntry)
+                const res = await axios.post(`/forum/addForum/${user._id}`,forumEntry,{
+                    headers:{
+                        authorization:user.auth
+                    }
+                })
                 window.location.replace('/forum')
             } catch (error) {
                 console.log(error)

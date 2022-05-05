@@ -27,7 +27,12 @@ function ForumModal({open,handleClose,refecenedComment,indicator,setIndicator}) 
         }
         const sendReply = async (comment)=>{
           try {
-            const res = await axios.post(`/comments/forum/${forumId}/${comment.userId}`,comment)
+            console.log(user.auth);
+            const res = await axios.post(`/comments/forum/${forumId}/${comment.userId}`,comment,{
+              headers:{
+                authorization:user.auth
+              }
+            });
             console.log(res.data)        
           } catch (error) {
             console.log(error)
