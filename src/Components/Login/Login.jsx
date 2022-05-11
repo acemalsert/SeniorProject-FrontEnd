@@ -47,34 +47,33 @@ export default function Login() {
   //     });
   // };
 
-  const onsubmit = async () => {
-    console.log(username, password);
+  const onsubmit = async (event) => {
+    event.preventDefault();
     try {
-      const json = JSON.stringify({
+      const json = {
         username: username,
         password: password,
-      });
-      alert(json);
-      const res = await axios
-        .post(
-          "http://localhost:8080/api/auth/signin",
-          {
-            username: username,
-            password: password,
-          },
-          {
-            "Content-Type": "application/json",
-          }
-        )
-        .then((res) => {
-          if (res.data.accessToken) {
-            localStorage.setItem("user", JSON.stringify(res.data));
-            alert(localStorage.getItem);
-          }
-          return response.data;
-        });
+      };
+
+      const res = await axios.post(
+        "http://localhost:5000/api/auth/login",
+        {
+          username: username,
+          password: password,
+        },
+        {
+          "Content-type": "application/json",
+        }
+      );
+
+      if (res.data.accessToken) {
+        localStorage.setItem("user", JSON.stringify(res.data));
+        dispatch({ type: "ADD_USER", payload: res.data });
+        alert("EGE", localStorage.getItem);
+      }
     } catch (error) {
       console.log(error);
+      alert("BARTU", error);
     }
   };
 
@@ -108,7 +107,7 @@ export default function Login() {
               className="loginButton"
               type="submit"
               disabled={isFetching}
-              onClick={(e) => onsubmit()}
+              onClick={(e) => onsubmit(e)}
             >
               {isFetching ? (
                 <CircularProgress color="white" size="20px" />

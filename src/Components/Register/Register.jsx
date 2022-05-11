@@ -7,13 +7,13 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const validateEmail = (value) => {
-    if (!isEmail(value)) {
-      return alert("This is not a valid email.");
-    } else {
-      return true;
-    }
-  };
+  // const validateEmail = (value) => {
+  //   if (!isEmail(value)) {
+  //     return alert("This is not a valid email.");
+  //   } else {
+  //     return true;
+  //   }
+  // };
   const validateUsername = (value) => {
     if (value.length < 3 || value.length > 20) {
       return alert("The username must be between 3 and 20 characters.");
@@ -28,32 +28,32 @@ const Register = () => {
       return true;
     }
   };
-  const onsubmit = async () => {
+  const onsubmit = async (event) => {
+    event.preventDefault();
     console.log(username, email, password);
     try {
       const json = JSON.stringify({
         username: username,
         email: email,
         password: password,
-        roles: ["user"],
+        isAdmin: false,
       });
-      console.log(json);
+      alert(json);
       const res = await axios.post(
-        "http://localhost:8080/api/auth/signup",
+        "http://localhost:5000/api/auth/register",
         {
           username: username,
           email: email,
           password: password,
-          roles: ["user"],
+          isAdmin: false,
         },
         {
           "Content-Type": "application/json",
         }
       );
-      alert("burada");
     } catch (error) {
       console.log(error);
-      alert("burada");
+      alert(error);
     }
   };
 
@@ -97,10 +97,9 @@ const Register = () => {
                     onClick={(e) => {
                       if (
                         validateUsername(username) &&
-                        validatePassword(password) &&
-                        validateEmail(email) == true
+                        validatePassword(password)
                       ) {
-                        onsubmit();
+                        onsubmit(e);
                       }
                     }}
                   >
