@@ -17,7 +17,7 @@ function InduvidualNews() {
       setInduvidualNews(res.data);
     } catch (error) {
       console.log(error);
-    }
+    }asd
   };
   
   useEffect(() => {
