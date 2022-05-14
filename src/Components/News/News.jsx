@@ -1,13 +1,38 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import {useParams} from 'react-router-dom'
 import "./news.css";
 import {Link} from 'react-router-dom';
 import axios from "axios";
+
+
+function DisplayComments({forumId}) {
+  const [commentsLength,setCommentsLength] = useState("")
+  useEffect(()=>{
+      const fetchComment = async(forumId)=>{
+          try {
+              const res = await axios.get(`/comments/forum/getAll/${forumId}`)
+              if(res.data.length <= 0){
+                  setCommentsLength("Henüz yorum yok")
+                  return
+              }
+              setCommentsLength(String(res.data.length)+" yorum")
+          } catch (error) {
+              console.log(error)
+          }
+      }
+      fetchComment(forumId)
+  },[])
+  return (
+      <div><p>{commentsLength}</p></div>
+  );
+}
 
 function News() {
 
   const [news,setNews]  = useState([])
   const [searchTerm, setSearchTerm] = useState("");
+  
 
 
   const fetchNews  = async() => {
@@ -90,14 +115,12 @@ function News() {
         <p className = "news-content">{filtered_news.content}</p>
         <div className="divider"> <hr/> </div>
         <div className="row mb-2"> 
+       
         <div className="col-4">
-            2 görüntülenme
+            <DisplayComments/>
         </div>
         <div className="col-4">
-            2 yorum
-        </div>
-        <div className="col-4">
-        <i class="fa-regular fa-heart"></i>
+        <i class="fa-solid fa-comment"></i>
         </div>
          </div>
         </div>
