@@ -1,12 +1,20 @@
 import React, { useState,useEffect } from "react";
 import "./induvidualNews.css";
 import { useParams } from "react-router-dom";
+import Comments from "./Comments";
 import axios from "axios"
+import NewsModal from "./NewsModal";
+
 
 function InduvidualNews() {
-  const [singlecomment, setsinglecomment] = useState(["first comment"]);
+  const [recomendednews,setRecomendedNews]  = useState([])
   const [induvidualNews, setInduvidualNews] = useState({});
   const {title} = useParams();
+  const [comments,setComments] = useState([]);
+  const [refecenedComment,setReferencedComment] = useState(0); 
+  const [indicator,setIndicator] = useState(false);
+  const [open,setOpen] = useState(false);
+  const {newsId} = useParams();
 
   const getindividualNews = async () => {
     try {
@@ -17,16 +25,44 @@ function InduvidualNews() {
       setInduvidualNews(res.data);
     } catch (error) {
       console.log(error);
-    }asd
+    }
   };
+
+  const fetchNewsComments = async ()=>{
+    try {
+      const res = await axios.get(`http://localhost:5000/api/comments/news/${newsId}/${induvidualNews.userId}`)
+      setComments(res.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const handleOpen = (commentId) =>{
+    setOpen(true);
+    setReferencedComment(commentId)
+  }
+  const handleClose = () =>{
+    setOpen(false)
+    setReferencedComment(0);
+  }
+  const fetchNews  = async() => {
+    try{
+      const res = await axios.get('http://localhost:5000/api/news/getNews')
+      setRecomendedNews(res.data) 
+      recomendednews = recomendednews.slice(0,3)
+    }
+    catch{
+     // console.log(error)
+    }
+  }
   
   useEffect(() => {
     getindividualNews();
+    fetchNewsComments();
+    fetchNews();
   }, []);
 
-  const handleSubmit = (event) => {
-   
-  };
+  
 
   return (
     <div className="container">
@@ -49,14 +85,25 @@ function InduvidualNews() {
                </div>
 
                <div className="comments-header ml-4">
-                 <h2>Comments</h2>
-                 {induvidualNews.map = (news) => (
-                   <div className = "comment-header">
-                    
-                   </div>
-                 )}
+                 <h2>Yorumlar</h2>
+                 <div className="mt-2 mb-2">
+      <div className='entry-comments'>
+              <hr />
+              <Comments 
+                comments={comments} 
+                handleOpen={handleOpen} />
+            </div>
+           { <NewsModal 
+            open={open}
+            handleClose={handleClose}
+            refecenedComment={refecenedComment}
+            indicator={indicator}
+            setIndicator={setIndicator}
+  /> }
+    </div>
+                  
                  <div>
-
+                  
                  </div>
                </div>
 
@@ -67,86 +114,45 @@ function InduvidualNews() {
       {/* Induvidual News End*/}
 
       {/* Recomended News*/}
-      <div className="row">
+      
+      {/* 
+      
+       <div className="row">
         <h2 className="recommended-news-title">Son Paylaşımlar</h2>
       </div>
-      <div className="row ">
-        <div class="card-group w-50">
-          <div class="card recommended-news m-3">
-            <img
-              class="card-img"
-              src="https://www.ubuy.com.tr/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvOTFYNzQ0eWoxeEwuX1NMMTUwMF8uanBn.jpg"
-              alt="card"
-            />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text"></p>
-              <p class="card-text">
-                <small class="text-muted">Last updated 3 mins ago</small>
-              </p>
-            </div>
-          </div>
-          <div class="card recommended-news m-3">
-            <img class="card-img-top" src="..." alt="card" />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text"></p>
-              <p class="card-text">
-                <small class="text-muted">Last updated 3 mins ago</small>
-              </p>
-            </div>
-          </div>
-          <div class="card recommended-news  m-3">
-            <img class="card-img-top" src="..." alt="card" />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text"></p>
-              <p class="card-text">
-                <small class="text-muted">Last updated 3 mins ago</small>
-              </p>
+    
+
+          <div className="row ">
+          <div class="card-group w-50">
+            <div class="card recommended-news m-3">
+              <img
+                class="card-img"
+                src="https://www.ubuy.com.tr/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvOTFYNzQ0eWoxeEwuX1NMMTUwMF8uanBn.jpg"
+                alt="card"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text"></p>
+                <p class="card-text">
+                  <small class="text-muted">Last updated 3 mins ago</small>
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      
+      
+      
+      */}
+     
+    
       {/* Recomended News End*/}
 
-      {/* Comments Section Start */}
-      <div className="row comments-section">
-        <div className="row ">
-          <h2 className="comments">Yorumlar</h2>
-        </div>
-        <hr></hr>
-
-        <div className="row">
-          <div className="col-2">
-            <img
-              className="img"
-              src="https://www.ubuy.com.tr/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvOTFYNzQ0eWoxeEwuX1NMMTUwMF8uanBn.jpg"
-              alt="commenter"
-            />
-          </div>
-
-          <div className="col-10">
-            <input
-              className="comment-input"
-              placeholder="          Yorum yazın"
-              onChange={(event) => setsinglecomment(event.target.value)}
-            />
-          </div>
-
-          <div className="row">
-            <form>
-              <button type="button" class="btn btn-info" onClick={handleSubmit}>
-                Gönder
-              </button>
-            </form>
-          </div>
-        </div>
+      
       </div>
-
-      {/* Comments Section End */}
-    </div>
+      
   );
 }
+
 
 export default InduvidualNews;
