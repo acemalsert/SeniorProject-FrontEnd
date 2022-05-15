@@ -33,7 +33,7 @@ function InduvidualNews() {
   
   const fetchNewsComments = async ()=>{
     try {
-      const res = await axios.get(`http://localhost:5000/api/comments/news/${newsId}/${induvidualNews.userId}`)
+      const res = await axios.get(`http://localhost:5000/api/comments/news/${newsId}/${user._id}`)
       setComments(res.data)
     } catch (error) {
       console.log(error)
