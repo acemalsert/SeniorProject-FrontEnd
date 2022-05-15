@@ -6,12 +6,12 @@ import {Link} from 'react-router-dom';
 import axios from "axios";
 
 
-function DisplayComments({forumId}) {
+function DisplayComments({newsId}) {
   const [commentsLength,setCommentsLength] = useState("")
   useEffect(()=>{
-      const fetchComment = async(forumId)=>{
+      const fetchComment = async(newsId)=>{
           try {
-              const res = await axios.get(`/comments/forum/getAll/${forumId}`)
+              const res = await axios.get(`/comments/news/${newsId}`)
               if(res.data.length <= 0){
                   setCommentsLength("Henüz yorum yok")
                   return
@@ -21,14 +21,15 @@ function DisplayComments({forumId}) {
               console.log(error)
           }
       }
-      fetchComment(forumId)
+      fetchComment(newsId)
   },[])
   return (
       <div><p>{commentsLength}</p></div>
   );
 }
 
-function News() {
+function News({newsId}) {
+
 
   const [news,setNews]  = useState([])
   const [searchTerm, setSearchTerm] = useState("");
@@ -111,13 +112,13 @@ function News() {
            
           
         </div>
-        <div className = "news-title"><Link to={`/induvidualNews/${filtered_news.title}`} className = "title-link" > {filtered_news.title}</Link></div>
+        <div className = "news-title"><Link to={`/induvidualNews/${filtered_news._id}`} className = "title-link" > {filtered_news.title}</Link></div>
         <p className = "news-content">{filtered_news.content}</p>
         <div className="divider"> <hr/> </div>
         <div className="row mb-2"> 
        
         <div className="col-4">
-            <DisplayComments/>
+            <DisplayComments newsId={filtered_news._id} />
         </div>
         <div className="col-4">
         <i class="fa-solid fa-comment"></i>

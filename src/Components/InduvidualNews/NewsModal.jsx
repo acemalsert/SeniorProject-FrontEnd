@@ -7,7 +7,6 @@ import { AuthContext } from '../../context/AuthContext';
 
 function NewsModal({open,handleClose,refecenedComment,indicator,setIndicator,newsId}) {
     const replyContent = useRef(null);
-    //const {newsId} = useParams();
     const {user} = useContext(AuthContext);
 
     const handleReply = ()=>{
