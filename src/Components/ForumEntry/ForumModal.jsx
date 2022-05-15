@@ -14,6 +14,7 @@ function ForumModal({open,handleClose,refecenedComment,indicator,setIndicator}) 
           forumComment = {
             forumId:forumId,
             userId:user._id,
+            username:user.username,
             parentCommentId:refecenedComment,
             content:replyContent.current.value,
           }
@@ -22,6 +23,7 @@ function ForumModal({open,handleClose,refecenedComment,indicator,setIndicator}) 
           forumComment = {
             forumId:forumId,
             userId:user._id,
+            username:user.username,
             content:replyContent.current.value,
           }
         }
@@ -32,15 +34,14 @@ function ForumModal({open,handleClose,refecenedComment,indicator,setIndicator}) 
               headers:{
                 authorization:user.auth
               }
-            });
-            console.log(res.data)        
+            });    
+            setIndicator(!indicator);
+            handleClose()
           } catch (error) {
             console.log(error)
           }
         }
         sendReply(forumComment);
-        setIndicator(!indicator);
-        handleClose()
     }
     return (
         <Modal

@@ -48,7 +48,7 @@ function Main() {
             <Route path="/messenger">
                 {user ? <Messenger/>:<Redirect to="/"/>}
             </Route>
-            <Route exact path="/induvidualNews/:title">
+            <Route path="/induvidualNews/:title">
                     <InduvidualNews/>
                 </Route>
             <Redirect to="/"/>

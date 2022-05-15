@@ -54,16 +54,16 @@ function Comments({comments,handleOpen}){
                                             <div className='col-12 col-md-12'>
                                                 <div className='referenced'>
                                                     <i className="fa-solid fa-user"></i>
-                                                    <small>{parent.userId}</small>
+                                                    <small>{parent.userName}</small>
                                                     <p>{parent.content}</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className='row'>
-                                            <div className='col-12 col-md-3'>
+                                            <div className='col-12 col-md-1'>
                                                 <div className='commentHeader'>
                                                     <i className="fa-solid fa-user"></i>
-                                                    <small>{comment.userId}</small>
+                                                    <small>{comment.userName}</small>
                                                 </div>
                                             </div>
                                         </div>
@@ -92,10 +92,10 @@ function Comments({comments,handleOpen}){
                                 <React.Fragment key={comment._id}>
                                     <div className='comment' key={comment.userId} id={comment._id}>
                                         <div className='row'>
-                                            <div className='col-12 col-md-3'>
+                                            <div className='col-12 col-md-1'>
                                                 <div className='commentHeader'>
                                                     <i className="fa-solid fa-user"></i>
-                                                    <small>{comment.userId}</small>
+                                                    <small>{comment.userName}</small>
                                                 </div>
                                             </div>
                                         </div>

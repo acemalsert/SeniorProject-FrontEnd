@@ -9,6 +9,15 @@
     width: 100%;
     object-fit: contain;
 }
+.entry-heading{
+    margin-bottom: 0.2rem;
+}
+.entry-heading small{
+    font-size: 0.9rem;
+}
+.entry-heading h3{
+    margin-top: 0.4rem;
+}
 .comment{
     padding: 1rem;
     margin-top: 0.2rem;

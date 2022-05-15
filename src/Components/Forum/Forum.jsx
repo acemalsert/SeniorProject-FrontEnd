@@ -86,7 +86,7 @@ function Forum() {
                                 <a href={`/forum/${entry._id}`}><h5>{entry.title}</h5></a>
                             </div>
                             <div className='forumCard-content'>
-                                <p>{entry.content}</p>
+                                <p>{entry.content.substring(0,20)+" ..."}</p>
                                 <img src = {entry.img} alt="" />
                             </div>
                             <div className='forumCard-footer'>
