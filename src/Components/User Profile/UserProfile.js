@@ -8,10 +8,12 @@ import React, { useState, useEffect, useRef, useContext } from "react";
 import AccountTab from "./AccountTab";
 import PasswordTab from "./PasswordTab";
 import { AuthContext } from "../../context/AuthContext";
+import { useTranslation } from 'react-i18next';
 
 function UserProfile() {
   const [activeTab, setActiveTab] = useState("tab1");
   const {user} = useContext(AuthContext);
+  const {t} = useTranslation();
   const handleTab1 = () => {
     // update the state to tab1
     setActiveTab("tab1");
@@ -47,7 +49,7 @@ function UserProfile() {
                   color="#ffffff"
                   onClick={handleTab1}
                 >
-                  Account
+                  {t("user_profile.account")}
                 </Button>
               </div>
               <div className="button-card">
@@ -56,7 +58,7 @@ function UserProfile() {
                   color="ffffff"
                   onClick={handleTab2}
                 >
-                  Password
+                  {t("user_profile.password")}
                 </Button>
               </div>
             </div>

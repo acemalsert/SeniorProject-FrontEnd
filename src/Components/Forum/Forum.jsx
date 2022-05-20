@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './forum.css';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
+
 
  function DisplayComments({forumId}) {
     const [commentsLength,setCommentsLength] = useState("")
@@ -27,6 +29,7 @@ import axios from 'axios';
 function Forum() {
     const [forums,setForums] = useState([])
     const [search,setSearch] = useState([])
+    const {t}=useTranslation();
     useEffect(()=>{
         const fetchForumEntries = async ()=>{
             try {
@@ -54,7 +57,7 @@ function Forum() {
         <div className='row'>
             <div className='col-12 col-md-12'>
                 <div className='search-bar'>
-                    <h6>Forum Arama:</h6><hr /> 
+                    <h6>{t("forum.search_forum")}:</h6><hr /> 
                     <i className="fa-solid fa-magnifying-glass" ></i>
                     <input type="text" className='forum-search-field' placeholder='' name='search-field' onChange={(event)=>handleSearch(event.target.value)}/>
                 </div>
@@ -63,7 +66,7 @@ function Forum() {
         <div className='row'>
             <div className='col-12 col-md-12'>
                 <div className='search-bar'>
-                    <h6>En son Forumlar</h6><hr />
+                    <h6>{t("forum.last_forums")}</h6><hr />
                 </div>
             </div>
         </div>

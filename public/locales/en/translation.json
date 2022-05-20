@@ -1,0 +1,29 @@
+{
+    "navbar": {
+        "turkish": "Turkish",
+        "english": "English",
+        "news":"News",
+        "forum":"Forum",
+        "messages":"Messages",
+        "signup":"Sign Up",
+        "login":"Login"    
+      },
+      "forum":{
+        "last_forums":"Last Forums",
+        "search_forum":"Search Forum"
+      },
+      "account_tab":{
+        "account_settings":"Account Settings",
+        "username":"Username",
+        "email":"E-Mail",
+        "destination":"Destination",
+        "phone_number":"Phone Number",
+        "age":"Age",
+        "save_changes":"Save Changes"
+      },
+      "user_profile":{
+        "account":"Account",
+        "password":"Password",
+        "account_settings":"Account Settings"
+      }
+}

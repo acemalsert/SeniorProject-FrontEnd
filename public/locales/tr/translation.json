@@ -1,0 +1,30 @@
+{
+    "navbar": {
+        "turkish": "Türkçe",
+        "english": "İngilizce",
+        "news":"Haberler",
+        "forum":"Forum",
+        "messages":"Mesajlar",
+        "signup":"Kayıt Ol",
+        "login":"Giriş Yap"  
+      },
+      "forum":{
+        "last_forums":"En Son Forumlar",
+        "search_forum":"Forum Arama"
+      },
+      "account_tab":{
+        "account_settings":"Hesap Ayarları",
+        "username":"Kullanıcı Adı",
+        "email":"E-Posta",
+        "destination":"Şehir",
+        "phone_number":"Telefon Numarası",
+        "age":"Yaş",
+        "save_changes":"Değişiklikleri Kaydet"
+      },
+      "user_profile":{
+        "account":"Hesap",
+        "password":"Şifre",
+        "account_settings":"Hesap Ayarları"
+      }
+      
+}

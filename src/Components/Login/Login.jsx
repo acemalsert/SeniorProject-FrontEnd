@@ -68,6 +68,7 @@ export default function Login() {
 
       if (res.data.accessToken) {
         localStorage.setItem("user", JSON.stringify(res.data));
+        localStorage.setItem("username",JSON.stringify(res.data.username))
         dispatch({ type: "ADD_USER", payload: res.data });
         alert("EGE", localStorage.getItem);
       }

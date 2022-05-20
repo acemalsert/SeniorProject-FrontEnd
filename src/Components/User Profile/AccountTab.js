@@ -7,57 +7,127 @@ import { AuthContext } from "../../context/AuthContext";
 import profilePicture from "../../assets/profilepicture.png";
 import userList from "./userList.json";
 import React, { useState, useEffect, useRef,useContext } from "react";
+import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 function AccountTab() {
-  const [value, setValue] = useState(30);
-  const {user} = useContext(AuthContext);
+  
+  const { user, isFetching, dispatch } = useContext(AuthContext);
+  const [username,setUsername] =useState("");
+  const [age, setAge] = useState();
+  const [email,setEmail]=useState("");
+  const [phonenumber, setPhoneNumber] = useState("");
+  const [destination,setDestination] = useState("");
+  const {t} = useTranslation();
+
   function valuetext(value) {
     return `${value}°C`;
   }
-  const useStyles = makeStyles({
-    root: {
-      width: 300,
-    },
+  
+  const [userCredentials,setUserCredentials] = useState({
+    username: username,
+    email: email
   });
+  async function getUserCredentials(){
+    try{
+      let username = localStorage.getItem("username");
+      
+      username= username.replace(/['"]+/g, '');
+
+      const userCredentials = await axios.post("http://localhost:5000/api/auth/getUserCredentials",{username:username},{
+        "Content-type": "application/json",
+      })
+      console.log("BARTU",userCredentials)
+      return userCredentials;
+    }
+    catch(error){
+      console.log(error);
+    }
+      
+  }
+
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    setAge(newValue);
   };
 
-  const [inputs, setInputs] = useState({
-    name: "Ege Bartu Kurtaran",
-    age: 24,
-    destination: "Ankara",
-    phoneNumber: "+905398500244",
-    email: "egebartuk@gmail.com",
-  });
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const newUser=JSON.parse(localStorage.getItem("user"));
+const id=newUser.id
+        const res = await axios.post(
+        "http://localhost:5000/api/auth/changeUserCredentials",
+        {
+          id:id,
+          username: localStorage.getItem("username").replace(/['"]+/g, ''),
+          newusername:username,
+          newemail:email,
+          newage:age,
+          newdestination:destination,
+          newphonenumber:phonenumber
+        },
+        {
+          "Content-type": "application/json",
+        }
+      ).then(localStorage.setItem("username",JSON.stringify(username)));
+      
+      if(res.status===200){
+        console.log(newUser.username)
+        newUser.username=username;
+        localStorage.setItem("user",JSON.stringify(newUser));
+        dispatch({ type: "ADD_USER", payload: newUser});
+      
+      }
+      
+      
+    } catch (error) {
+      console.log(error);
+      
+    }
+  };
+    
+  
+
+  useEffect(async() => {
+    const userInfo = await  getUserCredentials();
+    console.log(userInfo.data.age)
+    setAge(userInfo.data.age);
+    console.log("YAŞŞŞ ",age)
+    setUsername(userInfo.data.username);
+    setEmail(userInfo.data.email);
+    setDestination(userInfo.data.destination);
+    setPhoneNumber(userInfo.data.phonenumber);
+    
+    
+  }, []);
 
   return (
     <div>
       <Container>
-        <h2 style={{ marginTop: "5%" }}>Account Settings </h2>
+        <h2 style={{ marginTop: "5%" }}>{t("account_tab.account_settings")}</h2>
         <Row>
           <Col>
             <Card style={{}}>
               <Container>
                 <Row style={{ marginBottom: "2%", marginTop: "5%" }}>
                   <Col>
-                    Name Surmame:{" "}
+                    {t("account_tab.username")}:
                     <Form.Control
                       name="name"
-                      onChange={setInputs}
-                      value={user.username}
+                      onChange={(e=>setUsername(e.target.value))}
+                      value={username}
                       size="sm"
                       type="text"
-                      placeholder="Name"
+                      placeholder="Username"
                     />
                   </Col>
                 </Row>
                 <Row style={{ marginBottom: "2%" }}>
                   <Col>
-                    Age:
+                  {t("account_tab.age")}:
                     <Slider
                       name="age"
-                      defaultValue={18}
+                      defaultValue={age}
                       getAriaValueText={valuetext}
                       aria-labelledby="discrete-slider-small-steps"
                       step={1}
@@ -65,21 +135,22 @@ function AccountTab() {
                       min={0}
                       max={100}
                       valueLabelDisplay="auto"
-                      onChange={setInputs}
-                      value={inputs.age}
+                      onChange={handleChange}
+                      
+                      
                     />
                   </Col>
                 </Row>
                 <Row style={{ marginBottom: "2%" }}>
                   <Col>
-                    Destination:{" "}
+                  {t("account_tab.destination")}:{" "}
                     <Form.Control
                       name="destination"
-                      onChange={setInputs}
-                      value={inputs.destination}
                       size="sm"
                       type="text"
                       placeholder="City"
+                      onChange={(e=>setDestination(e.target.value))}
+                      value={destination}
                     />{" "}
                   </Col>
                 </Row>
@@ -91,21 +162,21 @@ function AccountTab() {
                       size="sm"
                       type="text"
                       placeholder="Phone Number"
-                      onChange={setInputs}
-                      value={inputs.phoneNumber}
+                      onChange={(e=>setPhoneNumber(e.target.value))}
+                      value={phonenumber}
                     />{" "}
                   </Col>
                 </Row>
                 <Row style={{ marginBottom: "2%" }}>
                   <Col>
-                    E-Mail:{" "}
+                  {t("account_tab.email")}:{" "}
                     <Form.Control
                       name="email"
                       size="sm"
                       type="text"
                       placeholder="E-Mail Address"
-                      onChange={setInputs}
-                      value={inputs.email}
+                      onChange={(e=>setEmail(e.target.value))}
+                      value={email}
                     />{" "}
                   </Col>
                 </Row>
@@ -113,9 +184,9 @@ function AccountTab() {
                   <Button
                     variant="contained"
                     style={{ marginBottom: "2%" }}
-                    onClick={userList.userList.push(inputs)}
+                    onClick={(e) => onSubmit(e)}
                   >
-                    SAVE CHANGES
+                    {t("account_tab.save_changes")}
                   </Button>
                 </Row>
               </Container>
