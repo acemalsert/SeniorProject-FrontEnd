@@ -42,6 +42,7 @@ function Header() {
         </div>
         <div className='nav'>
             <ul className='nav-list'>
+                <li><a href="/feed"><i className="fa-solid fa-rss"></i>  Feed</a></li>
                 <li><a href="/news"><i className="far fa-newspaper"></i>  Haberler</a></li>
                 <li><a href="/forum"><i className="fas fa-align-justify"></i> Forum</a></li>
                 <CheckUser/>

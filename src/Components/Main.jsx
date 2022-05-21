@@ -14,6 +14,8 @@ import Register from './Register/Register';
 import Login from './Login/Login';
 import ForumForm from './Forum/ForumForm';
 import { AuthContext } from '../context/AuthContext';
+import FeedPage from './Feed/FeedPage';
+import FeedEntry from './Feed/FeedEntry';
 function Main() {
     const {user}  = useContext(AuthContext);
     return(
@@ -49,8 +51,14 @@ function Main() {
                 {user ? <Messenger/>:<Redirect to="/"/>}
             </Route>
             <Route path="/induvidualNews/:title">
-                    <InduvidualNews/>
-                </Route>
+                <InduvidualNews/>
+            </Route>
+            <Route path="/Feed/:feedId">
+                <FeedEntry/>
+            </Route>
+            <Route exact path="/Feed">
+                <FeedPage/>
+            </Route>
             <Redirect to="/"/>
         </Switch>
         <Footer/>
