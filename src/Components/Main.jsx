@@ -16,10 +16,9 @@ import ForumForm from './Forum/ForumForm';
 import { AuthContext } from '../context/AuthContext';
 import FeedPage from './Feed/FeedPage';
 import FeedEntry from './Feed/FeedEntry';
-import AdminPanel from "./AdminPanel/AdminPanel"
 function Main() {
-  const { user } = useContext(AuthContext);
-  return (
+    const {user}  = useContext(AuthContext);
+    return(
     <div>
         <Header/>
         <Switch> 
@@ -60,13 +59,11 @@ function Main() {
             <Route exact path="/Feed">
                 <FeedPage/>
             </Route>
-            <Route>
-      <AdminPanel/>
-        </Route>
             <Redirect to="/"/>
         </Switch>
         <Footer/>
     </div>
-  );
+    );
 }
 export default Main;
+
