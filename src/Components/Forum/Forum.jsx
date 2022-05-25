@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './forum.css';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
-
-
- function DisplayComments({forumId}) {
+function DisplayComments({forumId}) {
     const [commentsLength,setCommentsLength] = useState("")
+    const {t}=useTranslation();
     useEffect(()=>{
         const fetchComment = async(forumId)=>{
             try {
-                const res = await axios.get(`/comments/forum/getAll/${forumId}`)
+                const res = await axios.get(`http://localhost:5000/comments/forum/getAll/${forumId}`)
                 if(res.data.length <= 0){
-                    setCommentsLength("Henüz yorum yok")
+                    setCommentsLength(t("forum.no_comment_yet"))
                     return
                 }
                 setCommentsLength(String(res.data.length)+" yorum")
@@ -27,13 +26,13 @@ import { useTranslation } from 'react-i18next';
 }
 
 function Forum() {
-    const [forums,setForums] = useState([])
+     const [forums,setForums] = useState([])
     const [search,setSearch] = useState([])
     const {t}=useTranslation();
     useEffect(()=>{
         const fetchForumEntries = async ()=>{
             try {
-                const res = await axios.get('/forum/getForum')
+                const res = await axios.get('http://localhost:5000/forum/getForum')
                 setForums(res.data);
                 setSearch(res.data);
             } catch (error) {
@@ -68,6 +67,7 @@ function Forum() {
                 <div className='search-bar'>
                     <h6>{t("forum.last_forums")}</h6><hr />
                 </div>
+                <hr />
             </div>
         </div>
         <div className='row'>
@@ -77,11 +77,11 @@ function Forum() {
                         <div className='forum-card'>
                             <div className='forumCard-heading'>
                                 <small><i className="fa-solid fa-user"></i></small>
-                                <small>{entry.userId}</small>
+                                <small>{entry.username || entry.userId}</small>
                                 <a href={`/forum/${entry._id}`}><h5>{entry.title}</h5></a>
                             </div>
                             <div className='forumCard-content'>
-                                <p>{entry.content}</p>
+                                <p>{entry.content.substring(0,20)+" ..."}</p>
                                 <img src = {entry.img} alt="" />
                             </div>
                             <div className='forumCard-footer'>

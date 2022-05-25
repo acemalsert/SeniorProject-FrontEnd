@@ -2,48 +2,43 @@ import React,{useState,useRef, useContext} from 'react'
 import {useParams} from 'react-router-dom'
 import axios from 'axios';
 import { Modal } from '@material-ui/core'
-import './forumEntry.css';
+import './comments.css';
 import { AuthContext } from '../../context/AuthContext';
 import {useTranslation} from "react-i18next"
-function ForumModal({open,handleClose,refecenedComment,indicator,setIndicator}) {
+function NewsModal({open,handleClose,refecenedComment,indicator,setIndicator,newsId}) {
     const replyContent = useRef(null);
-    const {forumId} = useParams();
+    //const {newsId} = useParams();
     const {user} = useContext(AuthContext);
-    const {t} =useTranslation();
+    const {t} = useTranslation();
     const handleReply = ()=>{
-        let forumComment;
+        let newsComment;
         if(refecenedComment){
-          forumComment = {
-            forumId:forumId,
+          newsComment = {
+            newsId:newsId,
             userId:user._id,
-            username:user.username,
             parentCommentId:refecenedComment,
             content:replyContent.current.value,
           }
         }
         else{
-          forumComment = {
-            forumId:forumId,
+          newsComment = {
+            newsId:newsId,
             userId:user._id,
-            username:user.username,
             content:replyContent.current.value,
           }
         }
         const sendReply = async (comment)=>{
           try {
-            console.log(user.auth);
-            const res = await axios.post(`/comments/forum/${forumId}/${comment.userId}`,comment,{
-              headers:{
-                authorization:user.auth
-              }
-            });    
-            setIndicator(!indicator);
-            handleClose()
+            const res = await axios.post(`http://localhost:5000/api/comments/news/${newsId}/${comment.userId}`,comment)
+            console.log(res.data)   
+            console.log(newsId)     
           } catch (error) {
             console.log(error)
           }
         }
-        sendReply(forumComment);
+        sendReply(newsComment);
+        setIndicator(!indicator);
+        handleClose()
     }
     return (
         <Modal
@@ -54,9 +49,9 @@ function ForumModal({open,handleClose,refecenedComment,indicator,setIndicator}) 
               <div className='row'>
                   <div className='col-12 col-md-12'>
                   <div className='comment-modal'>
-                      <h6 style={{marginBottom:"1rem"}}>{t("forum_modal.please_enter_your_reply")}</h6>
+                      <h6 style={{marginBottom:"1rem"}}>{t("news_modal.please_enter_your_reply")}</h6>
                       <textarea className="form-control mb-4" placeholder="Yanıt" id="floatingTextarea" ref={replyContent}></textarea>
-                      <button className='btn btn-primary' onClick={()=>handleReply()}>{t("forum_modal.reply")}</button>
+                      <button className='btn btn-primary' onClick={()=>handleReply()}>{t("news_modal.reply")}</button>
                   </div>
               </div>
             </div>
@@ -65,4 +60,4 @@ function ForumModal({open,handleClose,refecenedComment,indicator,setIndicator}) 
     );
 }
 
-export default ForumModal
+export default NewsModal

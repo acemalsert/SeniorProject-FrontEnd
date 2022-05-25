@@ -6,11 +6,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import axios from 'axios';
 import profilePicture from "../../assets/profilepicture.png";
 import React, { useState, useEffect, useRef } from "react";
+import {useTranslation} from "react-i18next"
 
 function PasswordTab() {
   const [username,setUsername]=useState("");
   const [password,setPassword]=useState("");
   const [newPassword,setNewPassword]=useState("");
+  const {t} = useTranslation();
 
   async function getUserCredentials(){
     try{
@@ -68,7 +70,7 @@ function PasswordTab() {
 
   return (
     <div style={{ marginTop: "5%" }}>
-      <h2 style={{ marginTop: "5%", marginLeft: "1%" }}>Password Settings </h2>
+      <h2 style={{ marginTop: "5%", marginLeft: "1%" }}>{t("password_tab.password_settings")}</h2>
       <Card>
         <Row>
           <Form.Label
@@ -76,7 +78,7 @@ function PasswordTab() {
             style={{ marginTop: "2%", marginLeft: "1%" }}
             
           >
-            Current Password
+            {t("password_tab.current_password")}
           </Form.Label>
 
           <Form.Control
@@ -91,7 +93,7 @@ function PasswordTab() {
             htmlFor="inputPassword5"
             style={{ marginTop: "2%", marginLeft: "1%" }}
           >
-            New Password
+            {t("password_tab.new_password")}
           </Form.Label>
 
           <Form.Control
@@ -107,8 +109,7 @@ function PasswordTab() {
             style={{ marginTop: "2%", marginLeft: "1%" }}
             muted
           >
-            Your password must be 8-20 characters long, contain letters and
-            numbers, and must not contain spaces, special characters, or emoji.
+            {t("password_tab.password_must")}
           </Form.Text>
           <Row>
             <Col>
@@ -121,7 +122,7 @@ function PasswordTab() {
                 }}
                 onClick={(e) => onSubmit(e)}
               >
-                SAVE CHANGES
+                {t("password_tab.save_changes")}
               </Button>
             </Col>
           </Row>

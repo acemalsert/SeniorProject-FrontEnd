@@ -14,6 +14,10 @@ import i18n from "../../i18n";
 const CheckUser = () => {
   const { user } = useContext(AuthContext);
   const {t} = useTranslation();
+
+  function deleteLocalStorage(){
+    localStorage.removeItem('user');
+  }
   if (user) {
     return (
       <>
@@ -26,6 +30,9 @@ const CheckUser = () => {
           <a href="/profile">
             <i className="fa-solid fa-user"></i>
           </a>
+        </li>
+        <li>
+          <a href="login" onClick={deleteLocalStorage}><i className="fa-solid fa-arrow-right-from-bracket"></i></a>
         </li>
       </>
     );

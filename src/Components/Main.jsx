@@ -12,11 +12,14 @@ import UserProfile from "./User Profile/UserProfile";
 import Messenger from "./Messenger/Messenger";
 import Register from "./Register/Register";
 import Login from "./Login/Login";
+import AdminPanel from "./AdminPanel/AdminPanel"
 import { AuthContext } from "../context/AuthContext";
+
 function Main() {
   const { user } = useContext(AuthContext);
   return (
     <div>
+
       <Header />
       <Switch>
         <Route exact path="/">
@@ -35,6 +38,9 @@ function Main() {
         <Route exact path="/profile">
           <UserProfile />
         </Route>
+        <Route>
+      <AdminPanel/>
+        </Route>
         <Route exact path="/forum">
           <Forum />
         </Route>
@@ -47,6 +53,7 @@ function Main() {
         <Redirect to="/" />
       </Switch>
       <Footer />
+      
     </div>
   );
 }

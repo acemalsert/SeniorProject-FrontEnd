@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './slider.css'
+import {useTranslation} from "react-i18next";
+
 function Slider() {
     const [next,setNext] = useState(1);
+    const {t} = useTranslation()
     const handleNext = ()=>{
         const sliderlength = document.getElementById("slider").childNodes.length-1;
         if(next >=sliderlength){
@@ -46,26 +49,26 @@ function Slider() {
             <div id = "slide1">
                 <img className = "slider-img" data-active src="https://i.redd.it/7ovvnp2ccyx51.png" alt="" />
                 <div className = "slide-heading" data-active>
-                    <h2 >Predator Medya</h2>
-                    <p>Oyuncuların bir numaralı adresi!</p>
+                    <h2 >{t("slider.predator_media")}</h2>
+                    <p>{t("slider.gamers_first_choice")}</p>
                 </div>
             </div>
             <div id = "slide2">
                 <img className = "slider-img" src="https://1.bp.blogspot.com/-rG0OpZsIA-c/Xu99ATAhUZI/AAAAAAAADbk/amIOJQ4GCEwLf6AmP4SQv8bjx2YS_2QGgCK4BGAsYHg/s3840/wallapaper%2Bvalorant%2B01.jpg" alt="" />
                 <div className = "slide-heading">
-                    <h2 >Oyun ile alakalı her şey!</h2>
-                    <p>Oyun sektorüyle alakalı son dakika haberleri,oyuncu forumları ve daha niceleri!</p>
+                    <h2 >{t("slider.everything_about_games")}</h2>
+                    <p>{t("slider.game_sector")}</p>
                 </div>
             </div>
             <div id = "slide3">
                 <img className = "slider-img" src="https://3.bp.blogspot.com/-LJH71ajOVow/XPrt54OKCfI/AAAAAAAAG1E/EdgNW13s1LoNqAeJwelgblTW41Uf1f1lQCKgBGAs/w0/dying-light-2-uhdpaper.com-4K-7.jpg" alt="" />
                 <div className = "slide-heading">
-                    <h2 >İletişim kur!</h2>
-                    <p>Üye olduktan sonra arkadaşlarınla rahatlıkla mesajlaşabilir,forumdan fikir belirtebilirsin!</p>
+                    <h2 >{t("slider.communicate")}</h2>
+                    <p>{t("slider.messaging_with_friends")}</p>
                 </div>
             </div>
         </div>
     );
 }
 
-export default Slider;
+export default Slider

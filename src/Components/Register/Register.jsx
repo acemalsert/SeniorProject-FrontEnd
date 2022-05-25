@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import "./register.css";
 import axios from "axios";
 import { isEmail } from "validator";
+import {useTranslation} from "react-i18next";
 const Register = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const {t} = useTranslation()
   // const validateEmail = (value) => {
   //   if (!isEmail(value)) {
   //     return alert("This is not a valid email.");
@@ -16,14 +17,14 @@ const Register = () => {
   // };
   const validateUsername = (value) => {
     if (value.length < 3 || value.length > 20) {
-      return alert("The username must be between 3 and 20 characters.");
+      return alert(t("register.username_must"));
     } else {
       return true;
     }
   };
   const validatePassword = (value) => {
     if (value.length < 6 || value.length > 40) {
-      return alert("The password must be between 6 and 40 characters.");
+      return alert(t("register.password_must"));
     } else {
       return true;
     }
@@ -65,7 +66,7 @@ const Register = () => {
             <div className="col-12 col-md-5">
               <div className="logo-register">
                 <h1>PREDATOR</h1>
-                <h5>Oyuncuların Bir Numaralı Tercihi</h5>
+                <h5>{t("register.gamers_first_choice")}</h5>
               </div>
             </div>
             <div className="col-12 col-md-7">
@@ -103,7 +104,7 @@ const Register = () => {
                       }
                     }}
                   >
-                    Üye Ol
+                    {t("register.register")}
                   </button>
                 </form>
               </div>

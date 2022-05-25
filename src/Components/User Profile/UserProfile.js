@@ -7,11 +7,14 @@ import profilePicture from "../../assets/profilepicture.png";
 import React, { useState, useEffect, useRef, useContext } from "react";
 import AccountTab from "./AccountTab";
 import PasswordTab from "./PasswordTab";
+import AdminPanel from "../AdminPanel/AdminPanel"
 import { AuthContext } from "../../context/AuthContext";
 import { useTranslation } from 'react-i18next';
+import axios from 'axios';
 
 function UserProfile() {
   const [activeTab, setActiveTab] = useState("tab1");
+  const [isAdmin,setIsAdmin]=useState(false);
   const {user} = useContext(AuthContext);
   const {t} = useTranslation();
   const handleTab1 = () => {
@@ -22,6 +25,31 @@ function UserProfile() {
     // update the state to tab2
     setActiveTab("tab2");
   };
+  
+  async function getUserCredentials(){
+    try{
+      let username = localStorage.getItem("username");
+      
+      username= username.replace(/['"]+/g, '');
+
+      const userCredentials = await axios.post("http://localhost:5000/api/auth/getUserCredentials",{username:username},{
+        "Content-type": "application/json",
+      })
+      console.log("BARTU",userCredentials.data)
+      return userCredentials;
+    }
+    catch(error){
+      console.log(error);
+    }
+      
+  }
+
+  useEffect(async() => {
+    const userInfo = await  getUserCredentials();
+    setIsAdmin(userInfo.data.isAdmin)
+    
+    
+  }, []);
 
   return (
     <React.Fragment>
@@ -61,10 +89,23 @@ function UserProfile() {
                   {t("user_profile.password")}
                 </Button>
               </div>
+              <div className="button-card">
+                {isAdmin === true ? <Button
+                  className="AdminPanel"
+                  color="ffffff"
+                 
+                  href="/adminpanel"
+                >
+                  {t("user_profile.admin_panel")}
+                </Button> : <></> }
+                
+               
+              </div>
             </div>
           </Col>
+          
           <Col className="column2" lg={8}>
-            {activeTab === "tab1" ? <AccountTab /> : <PasswordTab />}
+            {activeTab === "tab1" ? <AccountTab /> : <PasswordTab /> }
           </Col>
         </Row>
       </Container>

@@ -55,7 +55,7 @@ function ForumEntry() {
     fetchForumEntry()
     fetchForumComments()
   },[]);
-
+ 
   return (
     <div className='container'>
       <div className='row'>
@@ -64,7 +64,7 @@ function ForumEntry() {
           <div className='forum-entry'>
             <div className='entry-heading'>
               <small><i className="fa-solid fa-user"></i></small>
-              <small>{entry.userId}</small>
+              <small>{entry.username}</small>
               <h3>{entry.title}</h3>
             </div>
             <div className='entry-content'>

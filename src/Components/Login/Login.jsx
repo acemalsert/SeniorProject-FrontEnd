@@ -7,6 +7,8 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 import axios from "axios";
+import {useTranslation} from "react-i18next";
+import { t } from "i18next";
 
 export default function Login() {
   // const email = useRef();
@@ -84,7 +86,7 @@ export default function Login() {
         <div className="loginLeft">
           <h3 className="loginLogo">PREDATOR</h3>
           <span className="loginDesc">
-            Dünyanın ilk ve tek oyuncu sosyal platformu!
+            {t("login.worlds_first_and_only")}
           </span>
         </div>
         <div className="loginRight">
@@ -113,7 +115,7 @@ export default function Login() {
               {isFetching ? (
                 <CircularProgress color="white" size="20px" />
               ) : (
-                "Giriş Yap"
+                t("login.login")
               )}
             </button>
 
@@ -121,7 +123,7 @@ export default function Login() {
               {isFetching ? (
                 <CircularProgress color="white" size="20px" />
               ) : (
-                "Predator'e katıl"
+                t("login.join_predator")
               )}
             </button>
           </form>

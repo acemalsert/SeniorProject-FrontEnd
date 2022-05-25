@@ -37,7 +37,7 @@ function AccountTab() {
       const userCredentials = await axios.post("http://localhost:5000/api/auth/getUserCredentials",{username:username},{
         "Content-type": "application/json",
       })
-      console.log("BARTU",userCredentials)
+      console.log("BARTU",userCredentials.data)
       return userCredentials;
     }
     catch(error){

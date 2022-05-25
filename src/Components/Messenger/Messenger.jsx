@@ -6,7 +6,7 @@ import { io } from "socket.io-client";
 import Conversation from "../Conversations/Conversation";
 import Message from "../Message/Message";
 import ChatOnline from "../ChatOnline/ChatOnline";
-
+import {useTranslation} from "react-i18next";
 export default function Messenger() {
   const [conversations, setConversations] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
@@ -17,7 +17,8 @@ export default function Messenger() {
   const socket = useRef();
   const { user } = useContext(AuthContext);
   const scrollRef = useRef();
-
+  const [search,setSearch] = useState([])
+  const {t} = useTranslation();
   useEffect(() => {
     socket.current = io("ws://localhost:8900");
     socket.current.on("getMessage", (data) => {
@@ -28,7 +29,6 @@ export default function Messenger() {
       });
     });
   }, []);
-  console.log(user._id);
   useEffect(() => {
     arrivalMessage && currentChat?.members.includes(arrivalMessage.sender) &&
     setMessages((prev) => [...prev, arrivalMessage]);
@@ -65,6 +65,28 @@ export default function Messenger() {
     };
     getMessages();
   }, [currentChat]);
+  const searchUser = async(regex)=>{
+    if(regex === ""){
+      setSearch([])
+      return
+    }
+    try {
+      const res = await axios.get(`/users/?username=${regex}`)
+      setSearch(res.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  const appendConv = async(rid)=>{
+    console.log({senderId:user._id,recieverId:rid});
+    try {
+      const res = await axios.post("/conversations/",{senderId:user._id,recieverId:rid})
+      setConversations([...conversations,res.data])
+      setCurrentChat(res.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
     const message = {
@@ -76,7 +98,6 @@ export default function Messenger() {
     const receiverId = currentChat.members.find(
       (member) => member !== user._id
     );
-    console.log("recieverId",receiverId)
     socket.current.emit("sendMessage", {
       senderId: user._id,
       receiverId:receiverId,
@@ -91,7 +112,6 @@ export default function Messenger() {
       console.log(err);
     }
   };
-  console.log(user._id);
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
@@ -100,7 +120,15 @@ export default function Messenger() {
       <div className="messenger">
         <div className="chatMenu">
           <div className="chatMenuWrapper">
-            <input placeholder="Kullanıcı Arayın..." className="chatMenuInput" />
+            <input type="text" placeholder="Kullanıcı Arayın..." className="chatMenuInput" onChange={(e)=>searchUser(e.target.value)}/>
+            {search ? search.map((user)=>{
+                        return(
+                          <div onClick={(e)=>appendConv(user._id)} key={user._id} className="userWrapper">
+                            <img className="conversationImg" src="https://www.yenibirsey.net/wp-content/uploads/2017/12/wp-avatar.png" alt=""/>
+                            <h6>{user.username}</h6>
+                          </div>
+                       )
+                      }):""}
           </div>
         </div>
         <div className="chatBox">
@@ -125,20 +153,20 @@ export default function Messenger() {
                     value={newMessage}
                   ></textarea>
                   <button className="chatSubmitButton" onClick={handleSubmit}>
-                    Gönder
+                    {t("messenger.send")}
                   </button>
                 </div>
               </>
             ) : (
               <span className="noConversationText">
-                Henüz bir mesaj yok...
+                {t("messenger.any_message_yet")}
               </span>
             )}
           </div>
         </div>
         <div className="chatOnline">
           <div className="chatOnlineWrapper">
-            <h6>Konuşmalar</h6>
+            <h6>{t("messenger.conversations")}</h6>
             <hr />
           {conversations.map((c) => {
             return(
