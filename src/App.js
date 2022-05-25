@@ -3,6 +3,7 @@ import './App.css'
 import './Components/Main';
 import Main from './Components/Main';
 import {AuthContextProvider} from './context/AuthContext'
+import i18n from './i18n';
 function App() {
   return (
     <div>

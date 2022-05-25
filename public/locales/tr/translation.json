@@ -1,0 +1,92 @@
+{
+    "navbar": {
+        "turkish": "Türkçe",
+        "english": "İngilizce",
+        "news":"Haberler",
+        "forum":"Forum",
+        "messages":"Mesajlar",
+        "signup":"Kayıt Ol",
+        "login":"Giriş Yap"  
+      },
+      "forum":{
+        "last_forums":"En Son Forumlar",
+        "search_forum":"Forum Arama",
+        "no_comment_yet":"Henüz yorum yok",
+        "add_forum":"Forum Ekle"
+      },
+      "account_tab":{
+        "account_settings":"Hesap Ayarları",
+        "username":"Kullanıcı Adı",
+        "email":"E-Posta",
+        "destination":"Şehir",
+        "phone_number":"Telefon Numarası",
+        "age":"Yaş",
+        "save_changes":"Değişiklikleri Kaydet"
+      },
+      "password_tab":{
+        "password_settings":"Şifre Ayarları",
+        "current_password":"Güncel Şifre",
+        "new_password":"Yeni Şifre",
+        "password_must":"Şifre 6 ile 40 karakter uzunluğunda olmalıdır.",
+        "save_changes":"Değişiklikeri Kaydet"
+      },
+      "admin_panel":{
+        "admin_panel":"Admin Paneli"
+      },
+      "user_profile":{
+        "account":"Hesap",
+        "password":"Şifre",
+        "account_settings":"Hesap Ayarları",
+        "admin_panel":"Admin Paneli"
+      },
+      "forum_form":{
+        "heading":"Başlık",
+        "image_url":"Resim URL",
+        "image_right_click":"Resim üzerinde sağ click yaparak resim URL'sine erişebilirsin",
+        "add":"Ekle",
+        "content":"İçerik"
+      },
+      "comments":{
+        "no_comment_yet":"Henüz hiç yorum yapılmamış.",
+        "add_first_comment":"İlk yorumu sen ekle",
+        "login_to_add_comment":"Yorum yazmak için giriş yapın",
+        "add_comment":"Yorum Ekle",
+        "reply":"Yanıt Ver"
+      },
+      "forum_modal":{
+        "please_enter_your_reply":"Lütfen Yanıtınızı Giriniz",
+        "reply":"Yanıt Ver"
+      },
+      "individual_news":{
+        "comments":"Yorumlar"
+      },
+      "news_modal":{
+        "please_enter_your_reply":"Lütfen Yanıtınızı Giriniz",
+        "reply":"Yanıt Ver"
+      },
+      "login":{
+        "worlds_first_and_only":"Dünyanın İlk ve Tek Oyuncu Sosyal Medya Platformu!",
+        "login":"Giriş Yap",
+        "join_predator":"Predator'e Katıl !"
+      },
+      "messenger":{
+        "send":"Gönder",
+        "any_message_yet":"Henüz mesaj yok...",
+        "conversations":"Konuşmalar"
+      },
+      "register":{
+        "gamers_first_choice":"Oyuncuların İlk Tercihi",
+        "register":"Üye Ol",
+        "username_must":"Kullanıcı Adı 3 ile 20 karakter uzunluğunda olmalıdır.",
+        "password_must":"Şifre 6 ile 40 karakter uzunluğunda olmalıdır."
+      },
+      "slider":{
+          "predator_media":"Predator Medya",
+          "gamers_first_choice":"Oyuncuların İlk Tercihi",
+          "everything_about_games":"Oyunlarla İlgili Her Şey",
+          "game_sector":"Oyun sektörüyle alakalı son dakika haberleri,oyuncu forumları ve daha niceleri",
+          "communicate":"İletişim Kur",
+          "messaging_with_friends":"Üye olduktan sonra arkadaşlarınla rahatlıkla mesajlaşabilir,forumdan fikir belirtebilirsin!"
+      }
+      
+}

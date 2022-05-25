@@ -1,14 +1,16 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../../context/AuthContext';
 import './forumEntry.css';
+import {useTranslation} from "react-i18next";
 const EmptyCommentList = ({user,handleOpen})=>{
+    const {t} = useTranslation();
     return(
       <div>
-          <p>Buraya henüz yorum yapılmamıştır.</p>
+          <p>{t("comments.no_comment_yet")}</p>
           {user 
             ? 
-            <button className='button-forum' onClick={()=>handleOpen()}>Ilk Yorumu Yap</button>
-            :<p>Yorum yapmak için giriş yapın.</p>}
+            <button className='button-forum' onClick={()=>handleOpen()}>{t("comments.add_first_comment")}</button>
+            :<p>{t("comments.login_to_add_comment")}</p>}
             
       </div>
     )
@@ -16,6 +18,7 @@ const EmptyCommentList = ({user,handleOpen})=>{
 
 function Comments({comments,handleOpen}){
     const {user} = useContext(AuthContext);
+    const {t} = useTranslation();
     const getParent = (id)=>{
         return comments.find((comment)=>comment._id === id)
     }
@@ -38,7 +41,7 @@ function Comments({comments,handleOpen}){
                     <div className='container mt-1 mb-1'>
                         <div className='row'>
                             <div className='col-12 col-md-12'>
-                                <button className='button-forum' onClick={()=>handleOpen()}>Yorum Ekle</button>
+                                <button className='button-forum' onClick={()=>handleOpen()}>{t("comments.add_comment")}</button>
                                 <hr />
                             </div>
                         </div>
@@ -79,8 +82,8 @@ function Comments({comments,handleOpen}){
                                                 <div className='CommentForm'> 
                                                     {user 
                                                     ? 
-                                                    <button className='button-forum' onClick={()=>handleOpen(comment._id)}>Yanıt Ver</button>
-                                                    :<p>Yorum yapmak için giriş yapın.</p>}
+                                                    <button className='button-forum' onClick={()=>handleOpen(comment._id)}>{t("comments.reply")}</button>
+                                                    :<p>{t("comments.login_to_add_comment")}</p>}
                                                 </div>
                                             </div>
                                         </div>
@@ -109,7 +112,7 @@ function Comments({comments,handleOpen}){
                                         <div className='row'>
                                             <div className='col-12 col-md-12'>
                                                 <div className='CommentForm'> 
-                                                    <button className='button-forum' onClick={()=>handleOpen(comment._id)}>Yanıt Ver</button>
+                                                    <button className='button-forum' onClick={()=>handleOpen(comment._id)}>{t("comments.reply")}</button>
                                                 </div>
                                             </div>
                                         </div>

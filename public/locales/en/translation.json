@@ -1,0 +1,98 @@
+{
+    "navbar": {
+        "turkish": "Turkish",
+        "english": "English",
+        "news":"News",
+        "forum":"Forum",
+        "messages":"Messages",
+        "signup":"Sign Up",
+        "login":"Login"    
+      },
+    "forum":{
+        "last_forums":"Last Forums",
+        "search_forum":"Search Forum",
+        "no_comment_yet":"No comments yet",
+        "add_forum":"Add Forum"
+      },
+    "account_tab":{
+        "account_settings":"Account Settings",
+        "username":"Username",
+        "email":"E-Mail",
+        "destination":"Destination",
+        "phone_number":"Phone Number",
+        "age":"Age",
+        "save_changes":"Save Changes"
+      },
+      "password_tab":{
+        "password_settings":"Password Settings",
+        "current_password":"Current Password",
+        "new_password":"New Password",
+        "password_must":"The password must be between 6 and 40 characters.",
+        "save_changes":"Save Changes" },
+
+      "admin_panel":{
+          "admin_panel":"Admin Panel"
+        },
+    "user_profile":{
+        "account":"Account",
+        "password":"Password",
+        "account_settings":"Account Settings",
+        "admin_panel":"Admin Panel"
+      },
+    "forum_form":{
+        "heading":"Heading",
+        "image_url":"Image URL",
+        "image_right_click":"Via right click on image, you can copy the image URL",
+        "add":"Add",
+        "content":"Content"
+      },
+    "comments":{
+        "no_comment_yet":"No comments yet",
+        "add_first_comment":"Add first comment",
+        "login_to_add_comment":"Login to add comment",
+        "add_comment":"Add Comment",
+        "reply":"Reply"
+      },
+    "forum_modal":{
+      "please_enter_your_reply":"Please Enter Your Reply",
+      "reply":"Reply"
+      },
+    "individual_news":{
+      "comments":"Comments"
+    },
+    "news_modal":{
+      "please_enter_your_reply":"Please Enter Your Reply",
+      "reply":"Reply"
+    },
+    "login":{
+      "worlds_first_and_only":"World's first and only Gamer Social Media Platform !",
+      "login":"Login",
+      "join_predator":"Join Predator"
+    },
+    "messenger":{
+      "send":"Send",
+      "any_message_yet":"Any message yet...",
+      "conversations":"Conversations"
+    },
+    "register":{
+      "gamers_first_choice":"Gamer's First Choice",
+      "worlds_first_and_only":"World's first and only Gamer Social Media Platform !",
+      "login":"Login",
+      "join_predator":"Join Predator",
+      "register":"Register",
+      "username_must":"The username must be between 3 and 20 characters.",
+      "password_must":"The password must be between 6 and 40 characters."
+    },
+    "slider":{
+      "predator_media":"Predator Media",
+      "gamers_first_choice":"Gamers First Choice",
+      "everything_about_games":"Everything About Games",
+      "game_sector":"Last News, gamer forums and others about Gaming Sector",
+      "communicate":"Communicate",
+      "messaging_with_friends":"After register, you can chat with others and give your thoughts on forum page ! "
+  }
+  
+    
+      
+    
+}

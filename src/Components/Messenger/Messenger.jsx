@@ -6,7 +6,7 @@ import { io } from "socket.io-client";
 import Conversation from "../Conversations/Conversation";
 import Message from "../Message/Message";
 import ChatOnline from "../ChatOnline/ChatOnline";
-
+import {useTranslation} from "react-i18next";
 export default function Messenger() {
   const [conversations, setConversations] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
@@ -18,6 +18,7 @@ export default function Messenger() {
   const { user } = useContext(AuthContext);
   const scrollRef = useRef();
   const [search,setSearch] = useState([])
+  const {t} = useTranslation();
   useEffect(() => {
     socket.current = io("ws://localhost:8900");
     socket.current.on("getMessage", (data) => {
@@ -152,20 +153,20 @@ export default function Messenger() {
                     value={newMessage}
                   ></textarea>
                   <button className="chatSubmitButton" onClick={handleSubmit}>
-                    Gönder
+                    {t("messenger.send")}
                   </button>
                 </div>
               </>
             ) : (
               <span className="noConversationText">
-                Henüz bir mesaj yok...
+                {t("messenger.any_message_yet")}
               </span>
             )}
           </div>
         </div>
         <div className="chatOnline">
           <div className="chatOnlineWrapper">
-            <h6>Konuşmalar</h6>
+            <h6>{t("messenger.conversations")}</h6>
             <hr />
           {conversations.map((c) => {
             return(

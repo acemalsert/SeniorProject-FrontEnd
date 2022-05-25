@@ -1,28 +1,83 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import "./login.css";
 import { AuthContext } from "../../context/AuthContext";
 import { CircularProgress } from "@material-ui/core";
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import CheckButton from "react-validation/build/button";
+import { isEmail } from "validator";
 import axios from "axios";
+import {useTranslation} from "react-i18next";
+import { t } from "i18next";
 
 export default function Login() {
-  const email = useRef();
-  const password = useRef();
-  const {user,isFetching, dispatch } = useContext(AuthContext);
+  // const email = useRef();
+  // const password = useRef();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const { user, isFetching, dispatch } = useContext(AuthContext);
+  const API_URL = "http://localhost:8080/api/auth/";
+  // const handleClick = (e) => {
+  //   e.preventDefault();
+  //   const loginCall = async (email, password) => {
+  //     try {
+  //       const res = await axios.post("/auth/login", {
+  //         email: email,
+  //         password: password,
+  //       });
+  //       dispatch({ type: "ADD_USER", payload: res.data });
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   loginCall(email.current.value, password.current.value);
+  // };
+  // const login = async (username, password) => {
+  //   alert("BURADA");
+  //   return await axios
+  //     .post(API_URL + "signin", {
+  //       username,
+  //       password,
+  //     })
+  //     .then((response) => {
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    const loginCall= async(email,password)=>{
-        try {
-            const res = await axios.post('/auth/login',{
-                email:email,
-                password:password,
-            })
-            dispatch({type:'ADD_USER',payload:res.data})
-        } catch (error) {
-            console.log(error)
+  //       if (response.data.accessToken) {
+  //         localStorage.setItem("user", JSON.stringify(response.data));
+  //         alert(localStorage.getItem);
+  //       }
+  //       return response.data;
+  //     });
+  // };
+
+  const onsubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const json = {
+        username: username,
+        password: password,
+      };
+
+      const res = await axios.post(
+        "http://localhost:5000/api/auth/login",
+        {
+          username: username,
+          password: password,
+        },
+        {
+          "Content-type": "application/json",
         }
+      );
+
+      if (res.data.accessToken) {
+        localStorage.setItem("user", JSON.stringify(res.data));
+        localStorage.setItem("username",JSON.stringify(res.data.username))
+        dispatch({ type: "ADD_USER", payload: res.data });
+        alert("EGE", localStorage.getItem);
+      }
+    } catch (error) {
+      console.log(error);
+      alert("BARTU", error);
     }
-    loginCall(email.current.value,password.current.value)
   };
 
   return (
@@ -31,17 +86,17 @@ export default function Login() {
         <div className="loginLeft">
           <h3 className="loginLogo">PREDATOR</h3>
           <span className="loginDesc">
-            Dünyanın ilk ve tek oyuncu sosyal platformu!
+            {t("login.worlds_first_and_only")}
           </span>
         </div>
         <div className="loginRight">
-          <form className="loginBox" onSubmit={handleClick}>
+          <form className="loginBox">
             <input
-              placeholder="Email"
-              type="email"
+              placeholder="username"
+              type="username"
               required
               className="loginInput"
-              ref={email}
+              onChange={(event) => setUsername(event.target.value)}
             />
             <input
               placeholder="Password"
@@ -49,21 +104,26 @@ export default function Login() {
               required
               minLength="6"
               className="loginInput"
-              ref={password}
+              onChange={(event) => setPassword(event.target.value)}
             />
-            <button className="loginButton" type="submit" disabled={isFetching}>
+            <button
+              className="loginButton"
+              type="submit"
+              disabled={isFetching}
+              onClick={(e) => onsubmit(e)}
+            >
               {isFetching ? (
                 <CircularProgress color="white" size="20px" />
               ) : (
-                "Giriş Yap"
+                t("login.login")
               )}
             </button>
-           
+
             <button className="loginRegisterButton">
               {isFetching ? (
                 <CircularProgress color="white" size="20px" />
               ) : (
-                "Predator'e katıl"
+                t("login.join_predator")
               )}
             </button>
           </form>

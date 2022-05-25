@@ -4,12 +4,12 @@ import axios from 'axios';
 import { Modal } from '@material-ui/core'
 import './comments.css';
 import { AuthContext } from '../../context/AuthContext';
-
+import {useTranslation} from "react-i18next"
 function NewsModal({open,handleClose,refecenedComment,indicator,setIndicator,newsId}) {
     const replyContent = useRef(null);
     //const {newsId} = useParams();
     const {user} = useContext(AuthContext);
-
+    const {t} = useTranslation();
     const handleReply = ()=>{
         let newsComment;
         if(refecenedComment){
@@ -49,9 +49,9 @@ function NewsModal({open,handleClose,refecenedComment,indicator,setIndicator,new
               <div className='row'>
                   <div className='col-12 col-md-12'>
                   <div className='comment-modal'>
-                      <h6 style={{marginBottom:"1rem"}}>Lütfen Yanıtınızı giriniz:</h6>
+                      <h6 style={{marginBottom:"1rem"}}>{t("news_modal.please_enter_your_reply")}</h6>
                       <textarea className="form-control mb-4" placeholder="Yanıt" id="floatingTextarea" ref={replyContent}></textarea>
-                      <button className='btn btn-primary' onClick={()=>handleReply()}>Yanıt Ver</button>
+                      <button className='btn btn-primary' onClick={()=>handleReply()}>{t("news_modal.reply")}</button>
                   </div>
               </div>
             </div>
