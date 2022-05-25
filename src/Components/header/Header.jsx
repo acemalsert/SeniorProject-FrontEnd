@@ -80,6 +80,7 @@ function Header() {
       </div>
       <div className="nav">
         <ul className="nav-list">
+        <li><a href="/feed"><i className="fa-solid fa-rss"></i>  Feed</a></li>
           <li>
             <a href="/news">
               <i className="far fa-newspaper"></i> {t("navbar.news")}

@@ -1,0 +1,175 @@
+.feedWrapper{
+    height: 90vh;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+}
+.feedCategories{
+    background-color: rgb(250, 250, 250);
+}
+.feedCategories ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 2rem;
+    height: 100%;
+}
+.feedCategories ul li{
+    margin-top: 0.2rem;
+    border-bottom: 1px solid gray;
+    transition: 0.2s;
+    transition-timing-function: ease;
+    padding: 1rem;
+    cursor: pointer;
+}
+.feedCategories ul li:hover{
+    background-color: gray;
+}
+.feedCategories ul li a{
+    text-decoration: none;
+    color:rgb(36, 36, 36);
+}
+.mainFeed{
+    padding: 2rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.feed{
+    width: 100%;
+    padding: 1rem;
+    border: 0.3px solid rgb(219, 219, 219);
+    margin: 0.5rem;
+    margin-left: 16%;
+}
+.entryWrapper{
+    min-height: 80vh;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 100%;
+}
+.entryWrapper img{
+    padding: 1rem;
+}
+.feed-comments{
+    background-color: white
+}
+.feed a{
+    text-decoration: none;
+    color: black;
+}
+.feed-content{
+    padding: 0.2rem;
+    border-bottom: 1px solid rgb(201, 201, 201);
+}
+.feed-header{
+    width: 5%;
+    margin-left: 0.5rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+}
+.feed-bottom{
+    padding-top: 0.5rem;
+}
+.feed-bottom ul{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.feed-bottom ul li{
+    cursor: pointer;
+}
+.like{
+    color:rgb(255, 139, 139);
+    transition: 0.2s;
+    transition-timing-function: ease-in;
+}
+.own{
+    color:red;
+}
+.like:hover{
+    color:rgb(255, 67, 67);
+}
+.comment-feed{
+    color:rgb(148, 148, 250);
+    transition: 0.2s;
+    transition-timing-function: ease-in;
+}
+.comment-feed:hover{
+    color:rgb(102, 102, 255);
+}
+.avatar{
+    color: rgb(83, 190, 155);
+    font-size: large;
+    margin-right: 0.5rem;
+}
+.eye{
+    color:rgb(3, 142, 160);
+    transition: 0.2s;
+    transition-timing-function: ease-in;
+}
+.eye:hover{
+    color: rgb(58, 211, 211);
+}
+.advisiedWrapper{
+    background-color: rgb(250, 250, 250);
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    overflow-y: scroll;
+}
+.advisedForums,
+.advisedNews{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+.postFeed{
+    width: 100%;
+    border: 0.5px solid rgb(221, 221, 221);
+    padding: 1rem;
+    margin:1rem;
+}
+.post-content input{
+    outline: none;
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-bottom: 0.5px solid rgb(221, 221, 221);;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+.post-content textarea{
+    width: 100%;
+    padding: 1rem;
+    outline: 0;
+    border: none;
+    border-bottom: 0.5px solid rgb(221, 221, 221);;
+}
+.post-header{
+    margin-left: 0.5rem;
+}
+.fires{
+    color:rgb(201, 81, 45);
+    margin-right: 0.5rem;
+}
+.kesfet{
+    color:rgb(77, 155, 129);
+    margin-right: 0.5rem;
+}
+.my{
+    color:rgb(3, 99, 189);
+    margin-right: 0.5rem;
+}
+.card-top{
+    padding: 1rem;
+}
+.feed-content img{
+    object-fit: contain;
+    width: 100%;
+    border-radius: 2%;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
