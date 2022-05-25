@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import Comments from "./Comments";
 import axios from "axios"
 import NewsModal from "./NewsModal";
-import {useTranslation} from "react-i18next";
 
 
 function InduvidualNews() {
@@ -16,8 +15,6 @@ function InduvidualNews() {
   const [indicator,setIndicator] = useState(false);
   const [open,setOpen] = useState(false);
   const {newsId} = useParams();
-  const {t}=useTranslation();
-
 
   const getindividualNews = async () => {
     try {
@@ -88,7 +85,7 @@ function InduvidualNews() {
                </div>
 
                <div className="comments-header ml-4">
-                 <h2>{t("individual_news.comments")}</h2>
+                 <h2>Yorumlar</h2>
                  <div className="mt-2 mb-2">
       <div className='entry-comments'>
               <hr />

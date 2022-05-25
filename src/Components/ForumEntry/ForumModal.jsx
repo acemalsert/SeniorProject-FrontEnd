@@ -4,12 +4,10 @@ import axios from 'axios';
 import { Modal } from '@material-ui/core'
 import './forumEntry.css';
 import { AuthContext } from '../../context/AuthContext';
-import {useTranslation} from "react-i18next"
 function ForumModal({open,handleClose,refecenedComment,indicator,setIndicator}) {
     const replyContent = useRef(null);
     const {forumId} = useParams();
     const {user} = useContext(AuthContext);
-    const {t} =useTranslation();
     const handleReply = ()=>{
         let forumComment;
         if(refecenedComment){
@@ -54,9 +52,9 @@ function ForumModal({open,handleClose,refecenedComment,indicator,setIndicator}) 
               <div className='row'>
                   <div className='col-12 col-md-12'>
                   <div className='comment-modal'>
-                      <h6 style={{marginBottom:"1rem"}}>{t("forum_modal.please_enter_your_reply")}</h6>
+                      <h6 style={{marginBottom:"1rem"}}>Lütfen Yanıtınızı giriniz:</h6>
                       <textarea className="form-control mb-4" placeholder="Yanıt" id="floatingTextarea" ref={replyContent}></textarea>
-                      <button className='btn btn-primary' onClick={()=>handleReply()}>{t("forum_modal.reply")}</button>
+                      <button className='btn btn-primary' onClick={()=>handleReply()}>Yanıt Ver</button>
                   </div>
               </div>
             </div>

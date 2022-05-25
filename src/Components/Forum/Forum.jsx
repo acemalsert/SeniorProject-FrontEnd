@@ -2,16 +2,15 @@ import React, { useContext, useEffect, useState } from 'react'
 import './forum.css';
 import axios from 'axios';
 import { AuthContext } from '../../context/AuthContext';
-import { useTranslation } from 'react-i18next';
-function DisplayComments({forumId}) {
+
+ function DisplayComments({forumId}) {
     const [commentsLength,setCommentsLength] = useState("")
-    const {t}=useTranslation();
     useEffect(()=>{
         const fetchComment = async(forumId)=>{
             try {
-                const res = await axios.get(`http://localhost:5000/comments/forum/getAll/${forumId}`)
+                const res = await axios.get(`/comments/forum/getAll/${forumId}`)
                 if(res.data.length <= 0){
-                    setCommentsLength(t("forum.no_comment_yet"))
+                    setCommentsLength("Henüz yorum yok")
                     return
                 }
                 setCommentsLength(String(res.data.length)+" yorum")
@@ -27,14 +26,13 @@ function DisplayComments({forumId}) {
 }
 
 function Forum() {
-     const [forums,setForums] = useState([])
+    const [forums,setForums] = useState([])
     const [search,setSearch] = useState([])
-    const {t}=useTranslation();
     const {user} = useContext(AuthContext)
     useEffect(()=>{
         const fetchForumEntries = async ()=>{
             try {
-                const res = await axios.get('http://localhost:5000/forum/getForum')
+                const res = await axios.get('/forum/getForum')
                 setForums(res.data);
                 setSearch(res.data);
             } catch (error) {
@@ -58,7 +56,7 @@ function Forum() {
         <div className='row'>
             <div className='col-12 col-md-12'>
                 <div className='search-bar'>
-                    <h6>{t("forum.search_forum")}:</h6><hr /> 
+                    <h6>Forum Arama:</h6><hr /> 
                     <i className="fa-solid fa-magnifying-glass" ></i>
                     <input type="text" className='forum-search-field' placeholder='' name='search-field' onChange={(event)=>handleSearch(event.target.value)}/>
                 </div>
@@ -68,10 +66,10 @@ function Forum() {
             <div className='col-12 col-md-12'>
                 <div className='searchWrapper'>
                     <div>
-                        <h6>{t("forum.last_forums")}</h6>
+                        <h6>En son Forumlar</h6>
                     </div>
                     <div>
-                        <a href="/addForum" className='btn btn-secondary'>{t("forum.add_forum")}</a>
+                        <a href="/addForum" className='btn btn-secondary'>Forum Ekle</a>
                     </div>
                 </div>
                 <hr />
